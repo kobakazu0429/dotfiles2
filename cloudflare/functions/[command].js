@@ -5,7 +5,7 @@ const join = (path) => {
 }
 
 const commandMap = {
-  "install": join(("README.md");
+  "install": join(("README.md")),
 };
 
 export const onRequestGet = async (context) => {
