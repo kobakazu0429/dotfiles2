@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Usage
+# ./install [arch: mac]
+
+# -e: コマンドが失敗した時点でスクリプト全体を即座にエラー終了する
+# -u: 初期化していない変数があるとエラーにしてくれる
+# -x: 実行するコマンドを出力してくれる
+set -eu
+
+arch=$1
+
+if [ "_$arch" = "_mac" ]; then
+  if ! which brew 2>/dev/null; then
+    echo "Install homebrew first"
+    echo '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
+    exit 1
+  fi
+fi
