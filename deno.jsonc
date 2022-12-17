@@ -3,6 +3,6 @@
   "tasks": {
     "start": "deno run --unstable --allow-run=which scripts/install.ts",
     "update": "deno run --unstable -A scripts/update.ts",
-    "compile:mac": "deno compile --unstable --allow-run=which --import-map=import_map.json --target x86_64-apple-darwin --output ./dist/install scripts/install.ts"
+    "compile:mac": "deno compile --unstable --allow-run=which --import-map=import_map.json --target x86_64-apple-darwin --output ./dist/install_x86_64-apple-darwin scripts/install.ts"
   }
 }
