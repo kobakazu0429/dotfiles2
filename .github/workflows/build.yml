@@ -3,6 +3,9 @@ name: build
 on:
   push
 
+permissions:
+  contents: write
+
 jobs:
   hello:
     runs-on: ubuntu-latest
@@ -11,8 +14,8 @@ jobs:
       - uses: denoland/setup-deno@v1
       - name: Compile install binary
         run: deno task compile:mac
-      - name: Upload install binary
-        uses: actions/upload-artifact@v3
+      - name: Release
+        uses: softprops/action-gh-release@v1
         with:
-          name: install
-          path: install
+          files: |
+            scripts/install
