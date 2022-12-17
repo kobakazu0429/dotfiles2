@@ -1,0 +1,18 @@
+name: build
+
+on:
+  push
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: denoland/setup-deno@v1
+      - name: Compile install binary
+        run: deno task compile:mac
+      - name: Upload install binary
+        uses: actions/upload-artifact@v3
+        with:
+          name: install
+          path: install
