@@ -1,4 +1,4 @@
-const BASE = "https://raw.githubusercontent.com/kobakazu0429/dotfiles2/master/"
+const BASE = "https://kobakazu0429.github.io/dotfiles2/"
 
 const join = (path) => {
   return new URL(path, BASE).toString();

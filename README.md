@@ -3,5 +3,9 @@
 ## install
 
 ```shell
-bash -c "$(curl -fsSL https://dot.kaz.dev/install)"
+wget https://dot.kaz.dev/install && install
 ```
+
+<!-- ```shell
+bash -c "$(curl -fsSL https://dot.kaz.dev/install)"
+``` -->
