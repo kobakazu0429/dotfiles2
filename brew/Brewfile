@@ -1,0 +1,38 @@
+tap "carlocab/personal"
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/core"
+tap "homebrew/services"
+tap "teamookla/speedtest"
+# Clone of cat(1) with syntax highlighting and Git integration
+brew "bat"
+# Color-highlighted diff(1) output
+brew "colordiff"
+# Play, record, convert, and stream audio and video
+brew "ffmpeg"
+# Remote repository management made easy
+brew "ghq"
+# Distributed revision control system
+brew "git"
+# GNU implementation of the famous stream editor
+brew "gnu-sed"
+# GNU utilities for networking
+brew "inetutils"
+# Lightweight and flexible command-line JSON processor
+brew "jq"
+# Network Kanji code conversion Filter (NKF)
+brew "nkf"
+# Port scanning utility for large networks
+brew "nmap"
+brew "tree"
+# Internet file retriever
+brew "wget"
+# UNIX shell (command interpreter)
+brew "zsh"
+# Extract, view, and test RAR archives
+brew "carlocab/personal/unrar"
+cask "adobe-acrobat-reader"
+# Application uninstaller
+cask "appcleaner"
+# Open-source code editor
+cask "visual-studio-code"
