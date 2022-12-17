@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# -e: コマンドが失敗した時点でスクリプト全体を即座にエラー終了する
+# -u: 初期化していない変数があるとエラーにしてくれる
+# -x: 実行するコマンドを出力してくれる
+set -eux
+
+bin=`pwd`/install
+
+wget https://dot.kaz.dev/install_x86_64-apple-darwin -O $bin
+chmod +x $bin
+$bin
+rm $bin
