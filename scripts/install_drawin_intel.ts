@@ -12,5 +12,5 @@ export const intelMac = async () => {
     Deno.exit(1);
   }
 
-  await install("brew");
+  // await install("brew");
 };

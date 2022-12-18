@@ -5,7 +5,13 @@ type Script = "install";
 
 const run = async (moduleName: string, script: Script) => {
   const modulePath = resolve(
-    join(__dirname(import.meta.url), "..", moduleName, script + ".ts")
+    join(
+      __dirname(import.meta.url),
+      "..",
+      "modules",
+      moduleName,
+      script + ".ts"
+    )
   );
   const module = await import(modulePath);
   return module.defaut();

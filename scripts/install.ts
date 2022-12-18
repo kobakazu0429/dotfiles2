@@ -22,12 +22,15 @@ if (!which("ghq")) {
 }
 
 // // https://github.com/kobakazu0429/dotfiles2.git
-if (
-  !isExist("kobakazu0429", "dotfiles2.git") &&
-  !exec("ghq", { args: ["get", "git@github.com:kobakazu0429/dotfiles2.git"] })
-) {
-  log.error("failed clone dotfiles repository");
-  Deno.exit(1);
+if (isExist("kobakazu0429", "dotfiles2")) {
+  log.info("already cloned");
+} else {
+  if (
+    !exec("ghq", { args: ["get", "git@github.com:kobakazu0429/dotfiles2.git"] })
+  ) {
+    log.error("failed clone dotfiles repository");
+    Deno.exit(1);
+  }
 }
 
 if (os === "darwin" && arch === "x86_64") {
