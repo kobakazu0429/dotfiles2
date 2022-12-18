@@ -6,10 +6,17 @@ export const exec = (
   log.debug(`$ ${command} ${options?.args?.join(" ")}`);
   const result = new Deno.Command(command, options);
   const { code, stdout, stderr } = result.outputSync();
+  const status = code === 0;
   const stdoutString = new TextDecoder().decode(stdout);
   const stderrString = new TextDecoder().decode(stderr);
 
   if (stdoutString) log.debug(stdoutString);
-  if (stderrString) log.error(stderrString);
-  return code === 0;
+  if (stderrString)
+    if (status) {
+      log.warning(stderrString);
+    } else {
+      log.error(stderrString);
+    }
+
+  return status;
 };

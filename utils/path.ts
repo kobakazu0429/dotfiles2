@@ -1,3 +1,4 @@
+import { dirname, fromFileUrl } from "path";
 import { log } from "./logger.ts";
 
 export const homeDir = () => {
@@ -13,3 +14,5 @@ export const tempDir = () => {
   log.error("Can't get home path");
   Deno.exit(1);
 };
+
+export const __dirname = (url: ImportMeta["url"]) => dirname(fromFileUrl(url));
