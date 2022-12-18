@@ -2,8 +2,9 @@ import { log } from "../utils/logger.ts";
 import { exec } from "./../utils/exec.ts";
 import { install } from "./../utils/run.ts";
 import { which } from "./../utils/which.ts";
-import { intelMac } from "./install_drawin_intel.ts";
+import { isExist } from "./../modules/ghq/utils.ts";
 import { testSSHConnection } from "../modules/git/utils.ts";
+import { intelMac } from "./install_drawin_intel.ts";
 
 const { os, arch } = Deno.build;
 
@@ -22,6 +23,7 @@ if (!which("ghq")) {
 
 // // https://github.com/kobakazu0429/dotfiles2.git
 if (
+  !isExist("kobakazu0429", "dotfiles2.git") &&
   !exec("ghq", { args: ["get", "git@github.com:kobakazu0429/dotfiles2.git"] })
 ) {
   log.error("failed clone dotfiles repository");
