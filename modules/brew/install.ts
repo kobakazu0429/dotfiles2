@@ -1,7 +1,7 @@
 import { join, resolve } from "path";
-import { log } from "../utils/logger.ts";
-import { exec } from "./../utils/exec.ts";
-import { __dirname } from "./../utils/path.ts";
+import { log } from "../../utils/logger.ts";
+import { exec } from "./../../utils/exec.ts";
+import { __dirname } from "./../../utils/path.ts";
 
 export const installBrewfile = () => {
   if (

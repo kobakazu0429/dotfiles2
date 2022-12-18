@@ -4,5 +4,5 @@ export const which = (command: string) => {
   const result = exec("which", {
     args: [command],
   });
-  return result;
+  return result.status;
 };

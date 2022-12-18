@@ -9,9 +9,13 @@ export const homeDir = () => {
 };
 
 export const tempDir = () => {
-  const path = Deno.env.get("TEMP") ?? Deno.env.get("TEMPDIR");
+  const path =
+    Deno.env.get("TMPDIR") ??
+    Deno.env.get("TMP") ??
+    Deno.env.get("TEMP") ??
+    Deno.env.get("TEMPDIR");
   if (path) return path;
-  log.error("Can't get home path");
+  log.error("Can't get temp path");
   Deno.exit(1);
 };
 

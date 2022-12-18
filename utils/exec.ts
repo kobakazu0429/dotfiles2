@@ -1,8 +1,10 @@
 import { log } from "./logger.ts";
 
 export const exec = (
-  ...[command, options]: ConstructorParameters<typeof Deno.Command>
-): boolean => {
+  command: ConstructorParameters<typeof Deno.Command>[0],
+  options: ConstructorParameters<typeof Deno.Command>[1],
+  silent = false
+) => {
   log.debug(`$ ${command} ${options?.args?.join(" ")}`);
   const result = new Deno.Command(command, options);
   const { code, stdout, stderr } = result.outputSync();
@@ -10,13 +12,15 @@ export const exec = (
   const stdoutString = new TextDecoder().decode(stdout);
   const stderrString = new TextDecoder().decode(stderr);
 
-  if (stdoutString) log.debug(stdoutString);
-  if (stderrString)
-    if (status) {
-      log.warning(stderrString);
-    } else {
-      log.error(stderrString);
-    }
+  if (!silent) {
+    if (stdoutString) log.debug(stdoutString);
+    if (stderrString)
+      if (status) {
+        log.warning(stderrString);
+      } else {
+        log.error(stderrString);
+      }
+  }
 
-  return status;
+  return { code, status, stdoutString, stderrString };
 };
