@@ -1,3 +1,4 @@
-import { updateBrewfile } from "../brew/update.ts";
+import { update } from "./../utils/run.ts";
 
-updateBrewfile();
+// update("brew");
+update("karabiner");

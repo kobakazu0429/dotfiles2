@@ -1,7 +1,7 @@
 import { resolve, join } from "path";
 import { __dirname } from "./path.ts";
 
-type Script = "install";
+type Script = "install" | "update";
 
 const run = async (moduleName: string, script: Script) => {
   const modulePath = resolve(
@@ -19,4 +19,8 @@ const run = async (moduleName: string, script: Script) => {
 
 export const install = async (moduleName: string) => {
   return await run(moduleName, "install");
+};
+
+export const update = async (moduleName: string) => {
+  return await run(moduleName, "update");
 };
