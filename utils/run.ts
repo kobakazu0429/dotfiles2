@@ -14,7 +14,7 @@ const run = async (moduleName: string, script: Script) => {
     )
   );
   const module = await import(modulePath);
-  return module.defaut();
+  return module.default();
 };
 
 export const install = async (moduleName: string) => {

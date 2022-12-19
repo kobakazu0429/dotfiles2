@@ -3,7 +3,7 @@ import { log } from "../../utils/logger.ts";
 import { exec } from "./../../utils/exec.ts";
 import { __dirname } from "./../../utils/path.ts";
 
-export const installBrewfile = () => {
+export default () => {
   if (
     !exec("brew", {
       args: [
