@@ -1,0 +1,13 @@
+# http://algo13.net/clang/clang-format-style-oputions.html
+# https://yasuharu519.hatenablog.com/entry/2015/12/13/210825
+
+BasedOnStyle:  Google
+
+UseTab: Never
+IndentWidth: 2
+AccessModifierOffset: 0
+AllowShortFunctionsOnASingleLine: None
+AlwaysBreakTemplateDeclarations: false
+NamespaceIndentation: All
+
+# ColumnLimit: 0 # default: 80
