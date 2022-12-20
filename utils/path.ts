@@ -1,4 +1,4 @@
-import { dirname, fromFileUrl } from "path";
+import { resolve, join, dirname, fromFileUrl } from "path";
 import { log } from "./logger.ts";
 
 export const homeDir = () => {
@@ -20,3 +20,10 @@ export const tempDir = () => {
 };
 
 export const __dirname = (url: ImportMeta["url"]) => dirname(fromFileUrl(url));
+
+export const XDG_CONFIG_HOME =
+  Deno.env.get("XDG_CONFIG_HOME") ?? resolve(join(homeDir(), ".config"));
+export const XDG_CACHE_HOME =
+  Deno.env.get("XDG_CACHE_HOME") ?? resolve(join(homeDir(), ".cache"));
+export const XDG_DATA_HOME =
+  Deno.env.get("XDG_DATA_HOME") ?? resolve(join(homeDir(), ".local", "share"));

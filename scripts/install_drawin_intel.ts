@@ -12,6 +12,7 @@ export const intelMac = async () => {
     Deno.exit(1);
   }
 
+  await install("zsh");
   await install("homebrew");
   // await install("brew");
   await install("clang");
