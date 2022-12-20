@@ -2,23 +2,29 @@
 # Modules
 #
 
-# Sets sane Zsh built-in environment options.
+# 正常なzsh組み込み環境オプションを設定
 zmodule environment
-# Applies correct bindkeys for input events.
+
+# 入力イベントに対して正しいバインドキーを適用
 zmodule input
-# Sets a custom terminal title.
-zmodule termtitle
-# Utility aliases and functions. Adds colour to ls, grep and less.
+
+# カスタム端末のタイトルを設定
+# zmodule termtitle
+
+# ユーティリティのエイリアスや関数。ls, grep, lessに色をつける
 zmodule utility
+
+# 圧縮/解凍のユーティリティ
+# $ archive   myarchive.tar.gz /path/to/be/archived
+# $ unarchive myarchive.tar.gz
+# $ lsarchive myarchive.tar.gz
+# https://github.com/zimfw/archive
+zmodule archive
 
 #
 # Prompt
 #
 
-# Exposes to prompts how long the last command took to execute, used by asciiship.
-# zmodule duration-info
-# Exposes git repository status information to prompts, used by asciiship.
-# zmodule git-info
 # Custom prompts.
 zmodule $DOTFILES/modules/zsh/eriner
 
@@ -26,22 +32,23 @@ zmodule $DOTFILES/modules/zsh/eriner
 # Completion
 #
 
-# Additional completion definitions for Zsh.
+# zshの補完定義を追加
 zmodule zsh-users/zsh-completions --fpath src
-# Enables and configures smart and extensive tab completion.
-# completion must be sourced after all modules that add completion definitions.
+# スマートで広範囲なタブ補完を設定
+# completionモジュールは補完定義を追加するすべてのモジュールの後に読み込む必要がある
 zmodule completion
 
 #
 # Modules that must be initialized last
 #
 
-# Fish-like syntax highlighting for Zsh.
-# zsh-users/zsh-syntax-highlighting must be sourced after completion
+# fishのようなシンタックスハイライト
+# completionモジュールの後に読み込む必要がある
 zmodule zsh-users/zsh-syntax-highlighting
-# Fish-like history search (up arrow) for Zsh.
-# zsh-users/zsh-history-substring-search must be sourced after zsh-users/zsh-syntax-highlighting
+
+# fishのような履歴検索
+# zsh-users/zsh-syntax-highlightingの後に読み込む必要がある
 zmodule zsh-users/zsh-history-substring-search
-# Fish-like autosuggestions for Zsh.
+
+# fishのようなオートサジェスト
 zmodule zsh-users/zsh-autosuggestions
-# }}} End configuration added by Zim install
