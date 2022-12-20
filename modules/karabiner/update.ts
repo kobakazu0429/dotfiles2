@@ -1,4 +1,5 @@
 import { join, resolve, relative } from "path";
+import { log } from "../../utils/logger.ts";
 import { homeDir, __dirname } from "./../../utils/path.ts";
 
 export default () => {
@@ -32,5 +33,6 @@ export default () => {
       )
     );
     Deno.copyFileSync(source, to);
+    log.debug(`Copied ${source} -> ${to}`);
   }
 };

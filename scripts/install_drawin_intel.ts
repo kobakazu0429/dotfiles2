@@ -12,5 +12,10 @@ export const intelMac = async () => {
     Deno.exit(1);
   }
 
+  await install("homebrew");
   // await install("brew");
+  await install("clang");
+  await install("csscomb");
+  await install("git");
+  await install("karabiner");
 };

@@ -1,5 +1,5 @@
 import { join, resolve } from "path";
-import { ensureSymlinkSync } from "fs";
+import { symlink } from "../../utils/symlink.ts";
 import { log } from "../../utils/logger.ts";
 import { homeDir, __dirname } from "./../../utils/path.ts";
 
@@ -11,7 +11,7 @@ export default () => {
     const to = resolve(join(homeDir(), ".config", "git", file));
     try {
       Deno.statSync(source);
-      ensureSymlinkSync(source, to);
+      symlink(source, to);
     } catch (error) {
       log.error(error);
     }

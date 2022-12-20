@@ -30,4 +30,21 @@ Logger.setup({
 
 const log = Logger.getLogger();
 
+// const TracedDeno = new Proxy(Deno, {
+//   get(target, propKey, receiver) {
+//     const targetValue = Reflect.get(target, propKey, receiver);
+//     if (typeof targetValue === "function") {
+//       // deno-lint-ignore no-explicit-any
+//       return (...args: any[]) => {
+//         log.debug(`${propKey.toString()}(${args.join(", ")})`);
+//         return targetValue.apply(this, args);
+//       };
+//     } else {
+//       return targetValue;
+//     }
+//   },
+// });
+
+// self.Deno = TracedDeno;
+
 export { log };

@@ -5,7 +5,7 @@ import { __dirname } from "./../../utils/path.ts";
 
 export default () => {
   if (which("brew")) {
-    log.info("installed brew");
+    log.info("Installed Homebrew");
     return;
   }
   // log.warning(dedent`
