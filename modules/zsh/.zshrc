@@ -29,11 +29,11 @@ add_to_path $HOME/.local/bin
 # # export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 
 # rbenv
-export RBENV_ROOT=$HOME/.rbenv
-if [ -d $RBENV_ROOT ]; then
-  add_to_path $RBENV_ROOT/bin
-  eval "$(rbenv init -)"
-fi
+# export RBENV_ROOT=$HOME/.rbenv
+# if [ -d $RBENV_ROOT ]; then
+#   add_to_path $RBENV_ROOT/bin
+#   eval "$(rbenv init -)"
+# fi
 
 # pyenv
 export PYENV_ROOT=$HOME/.pyenv
@@ -43,11 +43,11 @@ if [ -d $PYENV_ROOT ]; then
 fi
 
 # goenv
-export GOENV_ROOT=$HOME/.goenv
-if [ -d $GOENV_ROOT ]; then
-  add_to_path $GOENV_ROOT/bin
-  eval "$(goenv init -)"
-fi
+# export GOENV_ROOT=$HOME/.goenv
+# if [ -d $GOENV_ROOT ]; then
+#   add_to_path $GOENV_ROOT/bin
+#   eval "$(goenv init -)"
+# fi
 
 
 export PATH
