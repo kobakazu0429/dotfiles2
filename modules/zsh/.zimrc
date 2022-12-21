@@ -25,7 +25,10 @@ zmodule archive
 # Prompt
 #
 
-# Custom prompts.
+# gitの情報をプロンプトに表示
+zmodule git-info
+
+# テーマ設定
 zmodule $DOTFILES/modules/zsh/eriner
 
 #
