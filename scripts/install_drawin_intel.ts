@@ -20,4 +20,5 @@ export const intelMac = async () => {
   await install("csscomb");
   await install("git");
   await install("karabiner");
+  await install("scripts");
 };

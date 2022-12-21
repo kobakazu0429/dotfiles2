@@ -246,6 +246,8 @@ function rarr() {
   rar a "$1.rar" "$1" -x"**/.*" -qo+
 }
 
+alias lsrar="zx $MY_SCRIPTS/lsrar.js"
+
 
 # find
 function not-image-find() {
