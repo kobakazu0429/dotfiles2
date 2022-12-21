@@ -1,7 +1,5 @@
-import { ensureDirSync } from "fs";
-import { join, resolve, dirname } from "path";
+import { join, resolve } from "path";
 import { symlink } from "../../utils/symlink.ts";
-import { log } from "../../utils/logger.ts";
 import { __dirname, XDG_CONFIG_HOME } from "./../../utils/path.ts";
 
 export default () => {
@@ -14,12 +12,6 @@ export default () => {
   for (const [_source, _to] of files) {
     const source = resolve(join(__dirname(import.meta.url), _source));
     const to = resolve(join(_to, _source));
-    try {
-      ensureDirSync(dirname(to));
-      Deno.statSync(source);
-      symlink(source, to);
-    } catch (error) {
-      log.error(error);
-    }
+    symlink(source, to);
   }
 };
