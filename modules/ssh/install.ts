@@ -1,4 +1,5 @@
-import { join, resolve } from "path";
+import { join, resolve, dirname } from "path";
+import { ensureFileSync, ensureDirSync } from "fs";
 import { dedent } from "ts-dedent";
 import { exec } from "../../utils/exec.ts";
 import { log } from "../../utils/logger.ts";
@@ -13,6 +14,8 @@ export default () => {
     Deno.statSync(dest);
     log.info("Generated GitHub SSH key");
   } catch {
+    ensureDirSync(dirname(config));
+    ensureFileSync(config);
     Deno.writeTextFileSync(
       config,
       dedent`Host github
