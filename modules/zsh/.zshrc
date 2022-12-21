@@ -173,6 +173,7 @@ function asd() {
   fi
 }
 
+alias sad=asd
 
 # Python
 alias p="python3"
