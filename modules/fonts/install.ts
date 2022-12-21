@@ -20,6 +20,7 @@ const downloadDirectory = tempDir();
 
 // for VSCode
 const RictyDiminished = () => {
+  // find download url from https://rictyfonts.github.io/diminished
   const url =
     "https://rictyfonts.github.io/files/ricty_diminished-4.1.1.tar.gz";
 
