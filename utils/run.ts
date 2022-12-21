@@ -19,11 +19,15 @@ const run = async (moduleName: string, script: Script) => {
 };
 
 export const install = async (moduleName: string) => {
-  log.info(`Install ${moduleName}`);
-  return await run(moduleName, "install");
+  log.info(`Install ${moduleName} Start.`);
+  const result = await run(moduleName, "install");
+  log.info(`Install ${moduleName} Done.`);
+  return result;
 };
 
 export const update = async (moduleName: string) => {
-  log.info(`Update ${moduleName}`);
-  return await run(moduleName, "update");
+  log.info(`Update ${moduleName} Start.`);
+  const result = await run(moduleName, "update");
+  log.info(`Update ${moduleName} Done.`);
+  return result;
 };
