@@ -2,6 +2,7 @@ import { log } from "../utils/logger.ts";
 import { exec } from "./../utils/exec.ts";
 import { install } from "./../utils/run.ts";
 import { which } from "./../utils/which.ts";
+import installSSH from "../modules/ssh/install.ts";
 import { exitGeneralErrors } from "./../utils/exit.ts";
 import { isExist } from "./../modules/ghq/utils.ts";
 import { testSSHConnection } from "../modules/git/utils.ts";
@@ -11,7 +12,7 @@ const { os, arch } = Deno.build;
 
 which("git", true);
 
-await install("ssh");
+installSSH();
 
 if (!testSSHConnection()) {
   log.error("failed ssh github");
