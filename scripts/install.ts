@@ -11,6 +11,8 @@ const { os, arch } = Deno.build;
 
 which("git", true);
 
+await install("ssh");
+
 if (!testSSHConnection()) {
   log.error("failed ssh github");
   exitGeneralErrors();
