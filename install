@@ -10,4 +10,6 @@ bin=`pwd`/install
 curl https://dot.kaz.dev/install_x86_64-apple-darwin -o $bin
 chmod +x $bin
 $bin
-rm $bin
+if [ $? = 0]; then
+  rm $bin
+fi

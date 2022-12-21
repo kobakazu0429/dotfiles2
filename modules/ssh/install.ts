@@ -1,6 +1,5 @@
 import { join, resolve, dirname } from "path";
 import { ensureFileSync, ensureDirSync } from "fs";
-import { dedent } from "ts-dedent";
 import { exec } from "../../utils/exec.ts";
 import { log } from "../../utils/logger.ts";
 import { homeDir } from "./../../utils/path.ts";
@@ -18,11 +17,11 @@ export default () => {
     ensureFileSync(config);
     Deno.writeTextFileSync(
       config,
-      dedent`Host github
-                    HostName github.com
-                    IdentityFile ${dest}
-                    User git
-                    `
+      `Host github
+  HostName github.com
+  IdentityFile ${dest}
+  User git
+`
     );
 
     exec("ssh-keygen", {
