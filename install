@@ -7,7 +7,7 @@ set -eux
 
 bin=`pwd`/install
 
-wget https://dot.kaz.dev/install_x86_64-apple-darwin -O $bin
+curl https://dot.kaz.dev/install_x86_64-apple-darwin -o $bin
 chmod +x $bin
 $bin
 rm $bin
