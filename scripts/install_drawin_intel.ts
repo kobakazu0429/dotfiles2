@@ -15,6 +15,7 @@ export const intelMac = async () => {
   await install("zsh");
   await install("homebrew");
   // await install("brew");
+  await install("fonts");
   await install("clang");
   await install("csscomb");
   await install("git");

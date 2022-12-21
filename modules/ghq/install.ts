@@ -24,7 +24,7 @@ export default () => {
     exec("wget", {
       args: [
         `https://github.com/x-motemen/ghq/releases/latest/download/${filename}`,
-        "-o",
+        "-O",
         downloadFilepath,
       ],
     });
