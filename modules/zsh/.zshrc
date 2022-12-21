@@ -1,5 +1,58 @@
 export LANG=ja_JP.UTF-8
 
+function add_to_path {
+  case ":$PATH:" in
+    *":$1:"*) :;; # already there
+    *) PATH="$1:$PATH";; # or PATH="$PATH:$1"
+  esac
+}
+
+add_to_path /usr/local/sbin
+add_to_path /usr/local/bin
+add_to_path /usr/bin
+add_to_path /bin
+add_to_path /usr/sbin
+add_to_path /sbin
+add_to_path /opt/local/bin
+add_to_path /opt/local/sbin
+add_to_path /usr/local/opt/llvm/bin
+add_to_path /usr/local/opt/openjdk/bin
+add_to_path /usr/local/opt/openssl/bin
+add_to_path /usr/local/opt/binutils/bin
+add_to_path /usr/local/opt/imagemagick@7/bin
+add_to_path $HOME/.nodebrew/current/bin
+add_to_path $HOME/.yarn/bin
+add_to_path $HOME/.local/bin
+
+
+# # export PATH="/usr/local/opt/llvm/bin:$PATH"
+# # export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+
+# rbenv
+export RBENV_ROOT=$HOME/.rbenv
+if [ -d $RBENV_ROOT ]; then
+  add_to_path $RBENV_ROOT/bin
+  eval "$(rbenv init -)"
+fi
+
+# pyenv
+export PYENV_ROOT=$HOME/.pyenv
+if [ -d $PYENV_ROOT ]; then
+  add_to_path $PYENV_ROOT/shims
+  eval "$(pyenv init -)"
+fi
+
+# goenv
+export GOENV_ROOT=$HOME/.goenv
+if [ -d $GOENV_ROOT ]; then
+  add_to_path $GOENV_ROOT/bin
+  eval "$(goenv init -)"
+fi
+
+
+export PATH
+export MANPATH=/opt/local/man:$MANPATH
+
 # ヒストリにある重複するコマンドを削除するオプション
 setopt hist_ignore_all_dups
 # 複数のターミナル間でヒストリの共有
@@ -188,9 +241,14 @@ function rarr() {
 
 
 # find
-function notimagefind() {
+function not-image-find() {
   find -E . -type f ! -iregex ".*\.(png|jpg|jpeg)"
 }
+
+
+# scripts
+## base64
+alias b6="node $MY_SCRIPTS/base64.js"
 
 
 # perf
