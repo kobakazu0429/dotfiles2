@@ -145,6 +145,13 @@ source ${ZIM_HOME}/init.zsh
 
 # zmodload -F zsh/terminfo +p:terminfo
 
+
+alias la='l'
+# サイズ順
+alias lS='ll -S'
+# 更新日時順
+alias lT='ll -t'
+
 # git
 alias g="git"
 alias ga="git add"
