@@ -2,19 +2,18 @@ import { log } from "../utils/logger.ts";
 import { exec } from "./../utils/exec.ts";
 import { install } from "./../utils/run.ts";
 import { which } from "./../utils/which.ts";
+import { exitGeneralErrors } from "./../utils/exit.ts";
 import { isExist } from "./../modules/ghq/utils.ts";
 import { testSSHConnection } from "../modules/git/utils.ts";
 import { intelMac } from "./install_drawin_intel.ts";
 
 const { os, arch } = Deno.build;
 
-if (!which("git")) {
-  log.error("not found `git`");
-}
+which("git", true);
 
 if (!testSSHConnection()) {
   log.error("failed ssh github");
-  Deno.exit(1);
+  exitGeneralErrors();
 }
 
 if (!which("ghq")) {
