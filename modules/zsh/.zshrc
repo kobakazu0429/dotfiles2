@@ -143,7 +143,12 @@ fi
 # Initialize modules.
 source ${ZIM_HOME}/init.zsh
 
-# zmodload -F zsh/terminfo +p:terminfo
+
+# 入力中のテキストからヒストリ検索
+zmodload -F zsh/terminfo +p:terminfo
+bindkey $terminfo[kcuu1] history-substring-search-up
+bindkey $terminfo[kcud1] history-substring-search-down
+unset key
 
 
 alias la='l'
