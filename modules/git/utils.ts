@@ -1,3 +1,4 @@
+import { log } from "../../utils/logger.ts";
 import { exec } from "./../../utils/exec.ts";
 
 export const testSSHConnection = () => {
@@ -7,7 +8,15 @@ export const testSSHConnection = () => {
     true
   );
 
-  return stderrString.startsWith(
+  const result = stderrString.startsWith(
     "Hi kobakazu0429! You've successfully authenticated"
   );
+
+  if (result) {
+    log.debug("Successfully, Connected to GitHub with SSH.");
+  } else {
+    log.debug("Failed, Connected to GitHub with SSH.");
+  }
+
+  return result;
 };
