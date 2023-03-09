@@ -26,10 +26,10 @@ add_to_path $HOME/.local/bin
 
 
 # # export PATH="/usr/local/opt/llvm/bin:$PATH"
-# # export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 
 # rbenv
 # export RBENV_ROOT=$HOME/.rbenv
+# export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 # if [ -d $RBENV_ROOT ]; then
 #   add_to_path $RBENV_ROOT/bin
 #   eval "$(rbenv init -)"
@@ -151,11 +151,15 @@ bindkey $terminfo[kcud1] history-substring-search-down
 unset key
 
 
+eval "$(op completion zsh)"; compdef _op op
+
 alias la='l'
 # サイズ順
 alias lS='ll -S'
 # 更新日時順
 alias lT='ll -t'
+
+alias tree='tree -NC'
 
 # git
 alias g="git"
@@ -239,7 +243,7 @@ function y() {
     if [ -e "package.json" ] && [ -e "package-lock.json" ]; then
       npm run $scripts
     elif [ -e "package.json" ] && [ -e "yarn.lock" ]; then
-      yarn $scripts
+      yarn run $scripts
     elif [ -e "deno.json" ] || [ -e "deno.jsonc" ]; then
       deno task $scripts
     fi
