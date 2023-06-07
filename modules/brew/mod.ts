@@ -1,31 +1,26 @@
 import { join, resolve } from "path";
 import { __dirname } from "./../../utils/path.ts";
-import { log } from "../../utils/logger.ts";
+import { modular } from "../../utils/modular.ts";
 import { exec } from "./../../utils/exec.ts";
 
 // https://github.com/Homebrew/homebrew-bundle
 // https://gist.github.com/yoshimana/43b9205ddedad0ad65f2dee00c6f4261
 
-export default {
-  name: "template",
+export default modular({
+  name: "brew",
 
-  install: () => {
-    if (
-      !exec("brew", {
-        args: [
-          "bundle",
-          "--file",
-          resolve(join(__dirname(import.meta.url), "Brewfile")),
-        ],
-      })
-    ) {
-      log.error("Failed brew install");
-      Deno.exit(1);
-    }
+  install: async () => {
+    await exec("brew", {
+      args: [
+        "bundle",
+        "--file",
+        resolve(join(__dirname(import.meta.url), "Brewfile")),
+      ],
+    });
   },
 
-  update: () => {
-    const result = exec("brew", {
+  update: async () => {
+    await exec("brew", {
       args: [
         "bundle",
         "dump",
@@ -35,6 +30,7 @@ export default {
         resolve(join(__dirname(import.meta.url), "Brewfile")),
       ],
     });
-    return result;
   },
-};
+
+  cleanup: () => {},
+});

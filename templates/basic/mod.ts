@@ -1,11 +1,12 @@
 import { join, resolve } from "path";
-import { symlink } from "./../../utils/symlink.ts";
+import { modular } from "../../utils/modular.ts";
+import { symlink } from "../../utils/symlink.ts";
 import { homeDir, __dirname } from "./../../utils/path.ts";
 
-export default {
+export default modular({
   name: "template",
 
-  install: () => {
+  install: async () => {
     const files = [""];
 
     for (const file of files) {
@@ -15,5 +16,7 @@ export default {
     }
   },
 
-  update: () => {},
-};
+  update: async () => {},
+
+  cleanup: async () => {},
+});

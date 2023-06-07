@@ -1,8 +1,14 @@
 {
   "importMap": "import_map.json",
   "tasks": {
+    "scaffold": "deno run --unstable -A scripts/scaffold.ts",
     "start": "deno run --unstable -A scripts/install.ts",
     "update": "deno run --unstable -A scripts/update.ts",
     "compile:mac": "deno compile --unstable -A --target x86_64-apple-darwin --output ./dist/install_x86_64-apple-darwin scripts/install.ts"
+  },
+  "lint": {
+    "rules": {
+      "exclude": ["ban-ts-comment"]
+    }
   }
 }

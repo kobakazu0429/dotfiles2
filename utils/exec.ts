@@ -1,26 +1,18 @@
 import { log } from "./logger.ts";
 
-export const exec = (
+export const exec = async (
   command: ConstructorParameters<typeof Deno.Command>[0],
   options: ConstructorParameters<typeof Deno.Command>[1],
   silent = false
 ) => {
   log.debug(`$ ${command} ${options?.args?.join(" ")}`);
-  const result = new Deno.Command(command, options);
-  const { code, stdout, stderr } = result.outputSync();
-  const status = code === 0;
-  const stdoutString = new TextDecoder().decode(stdout);
-  const stderrString = new TextDecoder().decode(stderr);
+  const $command = new Deno.Command(command, {
+    ...options,
+    stdin: "inherit",
+    stdout: silent ? "null" : "inherit",
+    stderr: silent ? "null" : "inherit",
+  });
 
-  if (!silent) {
-    if (stdoutString) log.debug(stdoutString);
-    if (stderrString)
-      if (status) {
-        log.warning(stderrString);
-      } else {
-        log.error(stderrString);
-      }
-  }
-
-  return { code, status, stdoutString, stderrString };
+  const { success } = await $command.output();
+  return { success };
 };

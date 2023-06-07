@@ -1,8 +1,9 @@
 import { join, resolve } from "path";
 import { symlink } from "../../utils/symlink.ts";
 import { __dirname, XDG_CONFIG_HOME } from "./../../utils/path.ts";
+import { modular } from "../../utils/modular.ts";
 
-export default {
+export default modular({
   name: "zsh",
 
   install: () => {
@@ -20,4 +21,6 @@ export default {
   },
 
   update: () => {},
-};
+
+  cleanup: () => {},
+});
