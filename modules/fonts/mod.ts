@@ -1,5 +1,6 @@
 import { join, resolve, basename, dirname } from "path";
 import { moveSync } from "fs";
+import { modular } from "../../utils/modular.ts";
 import { exec } from "./../../utils/exec.ts";
 import { os, type OS } from "./../../utils/os.ts";
 import {
@@ -19,7 +20,7 @@ const userFontDirectory: Record<OS, string> = {
 const downloadDirectory = tempDir();
 
 // for VSCode
-const RictyDiminished = () => {
+const RictyDiminished = async () => {
   // find download url from https://rictyfonts.github.io/diminished
   const url =
     "https://rictyfonts.github.io/files/ricty_diminished-4.1.1.tar.gz";
@@ -30,22 +31,18 @@ const RictyDiminished = () => {
   const destPath = resolve(join(userFontDirectory[os()], fontFilename));
 
   try {
-    Deno.statSync(destPath);
+    const info = Deno.statSync(destPath);
+    if (info.isFile) {
+      log.info("RictyDiminished is exist.");
+      return;
+    }
 
-    exec(
-      "wget",
-      {
-        args: [url, "-O", downloadPath],
-      },
-      true
-    );
-    exec(
-      "tar",
-      {
-        args: ["-zxvf", downloadPath, "-C", dirname(downloadPath)],
-      },
-      true
-    );
+    await exec("wget", {
+      args: [url, "-O", downloadPath],
+    });
+    await exec("tar", {
+      args: ["-zxvf", downloadPath, "-C", dirname(downloadPath)],
+    });
     moveSync(fontPath, destPath);
   } catch (error) {
     log.warning(error);
@@ -53,7 +50,7 @@ const RictyDiminished = () => {
 };
 
 // for terminal
-const SourceCodeProForPowerline = () => {
+const SourceCodeProForPowerline = async () => {
   const url =
     "https://github.com/powerline/fonts/raw/master/SourceCodePro/Source Code Pro for Powerline.otf";
   const fontFilename = basename(url);
@@ -61,22 +58,29 @@ const SourceCodeProForPowerline = () => {
   const destPath = resolve(join(userFontDirectory[os()], fontFilename));
 
   try {
-    Deno.statSync(destPath);
+    const info = Deno.statSync(destPath);
+    if (info.isFile) {
+      log.info("SourceCodeProForPowerline is exist.");
+      return;
+    }
 
-    exec(
-      "wget",
-      {
-        args: [url, "-O", downloadPath],
-      },
-      true
-    );
+    await exec("wget", {
+      args: [url, "-O", downloadPath],
+    });
     moveSync(downloadPath, destPath);
   } catch (error) {
     log.warning(error);
   }
 };
 
-export default () => {
-  RictyDiminished();
-  SourceCodeProForPowerline();
-};
+export default modular({
+  name: "fonts",
+
+  install: async () => {
+    await Promise.allSettled([RictyDiminished(), SourceCodeProForPowerline()]);
+  },
+
+  update: async () => {},
+
+  cleanup: async () => {},
+});

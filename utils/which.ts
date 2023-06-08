@@ -3,32 +3,39 @@ import { exitCommandNotFound } from "./exit.ts";
 import { log } from "./logger.ts";
 
 type WhichCache = Record<string, boolean>;
-const KEY = "which";
+const KEY = "which_command_result";
 
-export const which = (command: string, exit = false) => {
+type Options = {
+  exitIfNotFound: boolean;
+};
+
+export const which = async (
+  command: string,
+  options: Options = { exitIfNotFound: true }
+) => {
   const cache: WhichCache = JSON.parse(sessionStorage.getItem(KEY) ?? "{}");
   if (cache[command]) {
     return cache[command];
   }
-  const result = exec(
+  const result = await exec(
     "which",
     {
       args: [command],
     },
-    true
+    { streaming: false }
   );
 
-  cache[command] = result.status;
+  cache[command] = result.success;
   sessionStorage.setItem(KEY, JSON.stringify(cache));
 
-  if (result.status) {
-    log.debug(`${command} is exist.`);
+  if (result.success) {
+    log.debug(`${command} is exist. (${result.stdoutString?.trim()})`);
   } else {
     log.debug(`${command} is not exist.`);
-    if (exit) {
+    if (options.exitIfNotFound) {
       exitCommandNotFound();
     }
   }
 
-  return result.status;
+  return result.success;
 };
