@@ -1,42 +1,44 @@
+import { dedent } from "ts-dedent";
+
 import { log } from "../utils/logger.ts";
-import { exec } from "./../utils/exec.ts";
-import { install } from "./../utils/run.ts";
 import { which } from "./../utils/which.ts";
-import installSSH from "../modules/ssh/install.ts";
-import { exitGeneralErrors } from "./../utils/exit.ts";
-import { isExist } from "./../modules/ghq/utils.ts";
-import { testSSHConnection } from "../modules/git/utils.ts";
-import { intelMac } from "./install_drawin_intel.ts";
+
+import brew from "../modules/brew/mod.ts";
+import zsh from "../modules/zsh/mod.ts";
+import ssh from "../modules/ssh/mod.ts";
+import fonts from "../modules/fonts/mod.ts";
+import git from "../modules/git/mod.ts";
+import ghq from "../modules/ghq/mod.ts";
+import karabiner from "../modules/karabiner/mod.ts";
+import clang from "../modules/clang/mod.ts";
+import csscomb from "../modules/csscomb/mod.ts";
+import scripts from "../modules/scripts/mod.ts";
 
 const { os, arch } = Deno.build;
 
-which("git", true);
-
-installSSH();
-
-if (!testSSHConnection()) {
-  log.error("failed ssh github");
-  exitGeneralErrors();
-}
-
-if (!which("ghq")) {
-  await install("ghq");
-}
-
-// // https://github.com/kobakazu0429/dotfiles2.git
-if (isExist("kobakazu0429", "dotfiles2")) {
-  log.info("already cloned");
-} else {
-  if (
-    !exec("ghq", { args: ["get", "git@github.com:kobakazu0429/dotfiles2.git"] })
-  ) {
-    log.error("failed clone dotfiles repository");
+if (os === "darwin" && arch === "x86_64") {
+  if (!(await which("brew"))) {
+    log.warning(dedent`
+        Install homebrew first with ↓
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      `);
     Deno.exit(1);
   }
+} else {
+  log.info("Not support os and arch");
+  log.info(`os: ${os}, arch: ${arch}`);
+  Deno.exit(1);
 }
 
-if (os === "darwin" && arch === "x86_64") {
-  intelMac();
-} else {
-  log.info("not support os and arch");
-}
+await which("git", { exitIfNotFound: true });
+
+await brew.install();
+await ssh.install();
+zsh.install();
+await ghq.install();
+await fonts.install();
+clang.install();
+csscomb.install();
+git.install();
+karabiner.install();
+scripts.install();

@@ -10,6 +10,8 @@ export default modular({
   name: "brew",
 
   install: async () => {
+    await exec("brew", { args: ["upgrade"] });
+
     await exec("brew", {
       args: [
         "bundle",
