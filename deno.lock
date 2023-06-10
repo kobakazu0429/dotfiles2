@@ -31,8 +31,17 @@
     "https://deno.land/std@0.191.0/path/mod.ts": "f065032a7189404fdac3ad1a1551a9ac84751d2f25c431e101787846c86c79ef",
     "https://deno.land/std@0.191.0/path/posix.ts": "8b7c67ac338714b30c816079303d0285dd24af6b284f7ad63da5b27372a2c94d",
     "https://deno.land/std@0.191.0/path/separator.ts": "0fb679739d0d1d7bf45b68dacfb4ec7563597a902edbaf3c59b50d5bcadd93b1",
-    "https://deno.land/std@0.191.0/path/win32.ts": "d186344e5583bcbf8b18af416d13d82b35a317116e6460a5a3953508c3de5bba",
-    "https://esm.sh/ts-dedent@2.2.0": "9093d3e7c6c4b02abc98d06cbc302f347c6c5cbfbfbbf884c3019a515bf62561",
-    "https://esm.sh/v99/ts-dedent@2.2.0/deno/ts-dedent.js": "806fce1b30bbc0969d2bd560d1fb7f80be65eefe5644056182e76c83d65edb89"
+    "https://deno.land/std@0.191.0/path/win32.ts": "d186344e5583bcbf8b18af416d13d82b35a317116e6460a5a3953508c3de5bba"
+  },
+  "npm": {
+    "specifiers": {
+      "ts-dedent@2.2.0": "ts-dedent@2.2.0"
+    },
+    "packages": {
+      "ts-dedent@2.2.0": {
+        "integrity": "sha512-q5W7tVM71e2xjHZTlgfTDoPF/SmqKG5hddq9SzR49CH2hayqRKJtQ4mtRlSxKaJlR/+9rEM+mnBHf7I2/BQcpQ==",
+        "dependencies": {}
+      }
+    }
   }
 }
