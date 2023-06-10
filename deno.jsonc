@@ -1,5 +1,4 @@
 {
-  "importMap": "import_map.json",
   "tasks": {
     "start": "deno run --unstable -A scripts/install.ts",
     "update": "deno run --unstable -A scripts/update.ts",
@@ -10,5 +9,11 @@
     "rules": {
       "exclude": ["ban-ts-comment"]
     }
+  },
+  "imports": {
+    "fs": "https://deno.land/std@0.191.0/fs/mod.ts",
+    "log": "https://deno.land/std@0.191.0/log/mod.ts",
+    "path": "https://deno.land/std@0.191.0/path/mod.ts",
+    "ts-dedent": "https://esm.sh/ts-dedent@2.2.0"
   }
 }
