@@ -1,4 +1,4 @@
-import { exec } from "./exec.ts";
+import { execute } from "./execute.ts";
 import { exitCommandNotFound } from "./exit.ts";
 import { log } from "./logger.ts";
 
@@ -9,7 +9,7 @@ type Options = {
   exitIfNotFound: boolean;
 };
 
-export const which = async (
+export const which = (
   command: string,
   options: Options = { exitIfNotFound: true }
 ) => {
@@ -17,19 +17,13 @@ export const which = async (
   if (cache[command]) {
     return cache[command];
   }
-  const result = await exec(
-    "which",
-    {
-      args: [command],
-    },
-    { streaming: false }
-  );
+  const result = execute("which", command, { streaming: false });
 
   cache[command] = result.success;
   sessionStorage.setItem(KEY, JSON.stringify(cache));
 
   if (result.success) {
-    log.debug(`${command} is exist. (${result.stdoutString?.trim()})`);
+    log.debug(result.stdoutString?.trim());
   } else {
     log.debug(`${command} is not exist.`);
     if (options.exitIfNotFound) {

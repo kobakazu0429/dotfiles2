@@ -1,7 +1,7 @@
 import { join, resolve, dirname } from "path";
 import { ensureFileSync, ensureDirSync } from "fs";
 import { dedent } from "ts-dedent";
-import { exec } from "../../utils/exec.ts";
+import { execute } from "../../utils/execute.ts";
 import { log } from "../../utils/logger.ts";
 import { homeDir } from "./../../utils/path.ts";
 import { modular } from "./../../utils/modular.ts";
@@ -18,12 +18,10 @@ Host github
   User git
 `;
 
-const checkSSHConnection = async () => {
-  const { stderrString } = await exec(
-    "ssh",
-    { args: ["-T", "git@github.com"] },
-    { streaming: false }
-  );
+const checkSSHConnection = () => {
+  const { stderrString } = execute("ssh", "-T", "git@github.com", {
+    streaming: false,
+  });
 
   const result = stderrString?.startsWith(
     "Hi kobakazu0429! You've successfully authenticated"
@@ -41,7 +39,7 @@ const checkSSHConnection = async () => {
 export default modular({
   name: "ssh",
 
-  install: async () => {
+  install: () => {
     try {
       Deno.statSync(destPath);
       log.info("Already generated GitHub SSH key.");
@@ -50,9 +48,7 @@ export default modular({
       ensureFileSync(config);
       Deno.writeTextFileSync(configPath, config);
 
-      await exec("ssh-keygen", {
-        args: ["-t", "ed25519", "-f", destPath, "-N", ""],
-      });
+      execute("ssh-keygen", "-t", "ed25519", "-f", destPath, "-N", "");
 
       log.info("Need your action: add your new key");
       log.info("https://github.com/settings/ssh/new");
@@ -60,7 +56,7 @@ export default modular({
       exitGeneralErrors();
     }
 
-    if (!(await checkSSHConnection())) {
+    if (!checkSSHConnection()) {
       exitGeneralErrors();
     }
   },

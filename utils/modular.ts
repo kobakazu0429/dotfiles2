@@ -2,23 +2,23 @@ import { log } from "./logger.ts";
 
 export type Module = {
   name: string;
-  install: () => void | Promise<void>;
-  update: () => void | Promise<void>;
-  cleanup: () => void | Promise<void>;
+  install: () => void;
+  update: () => void;
+  cleanup: () => void;
 };
 
 export type Options<Target extends Module> = {
   interceptors: {
-    before: (target: Target) => void | Promise<void>;
-    after: (target: Target) => void | Promise<void>;
+    before: (target: Target) => void;
+    after: (target: Target) => void;
   };
-  onFailed: (error: Error, target: Target) => void | Promise<void>;
+  onFailed: (error: Error, target: Target) => void;
 };
 
 const defaultOptions: Options<Module> = {
   interceptors: {
     before: (target) => {
-      log.info(`Installing ${target.name}...`);
+      log.info(`Installing ${target.name}.`);
     },
     after: (target) => {
       log.info(`Installed ${target.name}.`);
@@ -41,14 +41,14 @@ export const modular = <MyModule extends Module>(
       // @ts-expect-error
       const property = target[prop];
       if (typeof property === "function") {
-        return async (...args: unknown[]) => {
-          await options.interceptors.before(target);
+        return (...args: unknown[]) => {
+          options.interceptors.before(target);
           try {
-            await property(...args);
+            property(...args);
           } catch (error) {
-            await options.onFailed(error, target);
+            options.onFailed(error, target);
           }
-          await options.interceptors.after(target);
+          options.interceptors.after(target);
         };
       }
       return property;

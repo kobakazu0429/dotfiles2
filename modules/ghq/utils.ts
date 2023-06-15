@@ -1,12 +1,8 @@
-import { exec } from "./../../utils/exec.ts";
+import { execute } from "./../../utils/execute.ts";
 
-export const isCloned = async (owner: string, repository: string) => {
+export const isCloned = (owner: string, repository: string) => {
   const name = owner + "/" + repository;
-  const { stdoutString } = await exec(
-    "ghq",
-    { args: ["list", name] },
-    { streaming: false }
-  );
+  const { stdoutString } = execute("ghq", "list", name, { streaming: false });
 
   // include at the end `\n` everytime
   const isOnlyRepository = stdoutString?.split("\n").length === 2;

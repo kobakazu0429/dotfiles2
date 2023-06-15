@@ -1,7 +1,7 @@
 import { join, resolve } from "path";
 import { modular } from "../../utils/modular.ts";
 import { symlink } from "../../utils/symlink.ts";
-import { os, type OS } from "./../../utils/os.ts";
+import { detectOS, type OS } from "./../../utils/os.ts";
 import { homeDir, __dirname } from "./../../utils/path.ts";
 
 const diffHighlight: Record<OS, string> = {
@@ -22,7 +22,7 @@ export default modular({
       symlink(source, to);
     }
 
-    symlink(diffHighlight[os()], "/usr/local/bin/diff-highlight");
+    symlink(diffHighlight[detectOS()], "/usr/local/bin/diff-highlight");
   },
 
   update: async () => {},

@@ -1,5 +1,6 @@
 {
   "tasks": {
+    "dev": "export DENO_ENV=development && deno run --unstable -A scripts/install.ts",
     "start": "deno run --unstable -A scripts/install.ts",
     "update": "deno run --unstable -A scripts/update.ts",
     "scaffold": "deno run --unstable -A scripts/scaffold.ts",

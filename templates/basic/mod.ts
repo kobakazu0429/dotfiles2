@@ -6,7 +6,7 @@ import { homeDir, __dirname } from "./../../utils/path.ts";
 export default modular({
   name: "template",
 
-  install: async () => {
+  install: () => {
     const files = [""];
 
     for (const file of files) {
@@ -16,7 +16,7 @@ export default modular({
     }
   },
 
-  update: async () => {},
+  update: () => {},
 
-  cleanup: async () => {},
+  cleanup: () => {},
 });

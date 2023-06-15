@@ -1,8 +1,8 @@
 import { join, resolve, basename, dirname } from "path";
 import { moveSync } from "fs";
 import { modular } from "../../utils/modular.ts";
-import { exec } from "./../../utils/exec.ts";
-import { os, type OS } from "./../../utils/os.ts";
+import { execute } from "./../../utils/execute.ts";
+import { detectOS, type OS } from "./../../utils/os.ts";
 import {
   homeDir,
   tempDir,
@@ -20,7 +20,7 @@ const userFontDirectory: Record<OS, string> = {
 const downloadDirectory = tempDir();
 
 // for VSCode
-const RictyDiminished = async () => {
+const RictyDiminished = () => {
   // find download url from https://rictyfonts.github.io/diminished
   const url =
     "https://rictyfonts.github.io/files/ricty_diminished-4.1.1.tar.gz";
@@ -28,7 +28,7 @@ const RictyDiminished = async () => {
   const downloadPath = resolve(join(downloadDirectory, basename(url)));
   const fontFilename = "RictyDiminished-Regular.ttf";
   const fontPath = resolve(join(downloadDirectory, fontFilename));
-  const destPath = resolve(join(userFontDirectory[os()], fontFilename));
+  const destPath = resolve(join(userFontDirectory[detectOS()], fontFilename));
 
   try {
     const info = Deno.statSync(destPath);
@@ -37,12 +37,8 @@ const RictyDiminished = async () => {
       return;
     }
 
-    await exec("wget", {
-      args: [url, "-O", downloadPath],
-    });
-    await exec("tar", {
-      args: ["-zxvf", downloadPath, "-C", dirname(downloadPath)],
-    });
+    execute("wget", url, "-O", downloadPath);
+    execute("tar", "-zxvf", downloadPath, "-C", dirname(downloadPath));
     moveSync(fontPath, destPath);
   } catch (error) {
     log.warning(error);
@@ -50,12 +46,12 @@ const RictyDiminished = async () => {
 };
 
 // for terminal
-const SourceCodeProForPowerline = async () => {
+const SourceCodeProForPowerline = () => {
   const url =
     "https://github.com/powerline/fonts/raw/master/SourceCodePro/Source Code Pro for Powerline.otf";
   const fontFilename = basename(url);
   const downloadPath = resolve(join(downloadDirectory, fontFilename));
-  const destPath = resolve(join(userFontDirectory[os()], fontFilename));
+  const destPath = resolve(join(userFontDirectory[detectOS()], fontFilename));
 
   try {
     const info = Deno.statSync(destPath);
@@ -64,9 +60,7 @@ const SourceCodeProForPowerline = async () => {
       return;
     }
 
-    await exec("wget", {
-      args: [url, "-O", downloadPath],
-    });
+    execute("wget", url, "-O", downloadPath);
     moveSync(downloadPath, destPath);
   } catch (error) {
     log.warning(error);
@@ -76,8 +70,9 @@ const SourceCodeProForPowerline = async () => {
 export default modular({
   name: "fonts",
 
-  install: async () => {
-    await Promise.allSettled([RictyDiminished(), SourceCodeProForPowerline()]);
+  install: () => {
+    RictyDiminished();
+    SourceCodeProForPowerline();
   },
 
   update: async () => {},
