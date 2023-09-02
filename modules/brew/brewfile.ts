@@ -13,6 +13,7 @@ export const minimum = [
   `brew "inetutils"`, // GNU utilities for networking
   `brew "iperf3"`, // Update of iperf: measures TCP, UDP, and SCTP bandwidth
   `brew "jq"`, // Lightweight and flexible command-line JSON processor
+  `brew "mas"`, // Mac App Store command-line interface
   `brew "nkf"`, // Network Kanji code conversion Filter (NKF)
   `brew "nmap"`, // Port scanning utility for large networks
   `brew "nodebrew"`, // Node.js version manager
@@ -35,6 +36,10 @@ export const minimum = [
 
 export const personal = [
   ...minimum,
+
+  `mas "LINE", id: 539883307`,
+  `mas "LINE WORKS", id: 6447544433`,
+  `mas "Tailscale", id: 1475387142`,
 
   `tap "carlocab/personal"`,
   `brew "carlocab/personal/unrar"`, // Extract, view, and test RAR archives,

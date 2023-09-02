@@ -2,7 +2,7 @@ import { join, resolve } from "path";
 import { __dirname } from "./../../utils/path.ts";
 import { modular } from "../../utils/modular.ts";
 import { execute } from "./../../utils/execute.ts";
-import { log } from "../../utils/logger.ts";
+import { getEnv, type Env } from "../../utils/env.ts";
 import { minimum, personal } from "./brewfile.ts";
 
 // https://github.com/Homebrew/homebrew-bundle
@@ -14,8 +14,6 @@ const writeBrewfile = (body: string) => {
   Deno.writeTextFileSync(brewfilePath, body);
 };
 
-const envs = ["minimum", "personal"] as const;
-type Env = (typeof envs)[number];
 const getData = (env: Env) => {
   if (env === "minimum") return minimum;
   else if (env === "personal") return personal;
@@ -27,12 +25,7 @@ export default modular({
   name: "brew",
 
   install: () => {
-    let env = Deno.env.get("DOTFILES_ENV") as Env | undefined;
-    if (!env || !envs.includes(env)) {
-      log.info("Not specified DOTFILES_ENV, to set `minimum` as default.");
-      env = "minimum";
-    }
-    const data = getData(env);
+    const data = getData(getEnv());
 
     writeBrewfile(data.join("\n"));
     execute("brew", "upgrade");

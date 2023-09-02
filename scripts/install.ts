@@ -1,4 +1,5 @@
 import { detectOS } from "./../utils/os.ts";
+import { getEnv } from "./../utils/env.ts";
 
 const os = detectOS();
 if (os !== "intel_mac") {
@@ -6,6 +7,7 @@ if (os !== "intel_mac") {
 }
 
 // await which("git", { exitIfNotFound: true });
+const env = getEnv();
 
 (await import("../modules/homebrew/mod.ts")).default.install();
 (await import("../modules/brew/mod.ts")).default.install();
@@ -19,3 +21,4 @@ if (os !== "intel_mac") {
 (await import("../modules/karabiner/mod.ts")).default.install();
 (await import("../modules/nodebrew/mod.ts")).default.install();
 (await import("../modules/scripts/mod.ts")).default.install();
+env === "personal" && (await import("../modules/smb/mod.ts")).default.install();
