@@ -1,10 +1,12 @@
 {
   "tasks": {
-    "dev": "export DENO_ENV=development && deno run --unstable -A scripts/install.ts",
-    "start": "deno run --unstable -A scripts/install.ts",
+    "dev": "export DENO_ENV=development && deno task start_",
+    "start:minimum": "export DOTFILES_ENV=minimum && deno task start_",
+    "start:personal": "export DOTFILES_ENV=personal && deno task start_",
     "update": "deno run --unstable -A scripts/update.ts",
     "scaffold": "deno run --unstable -A scripts/scaffold.ts",
-    "compile:mac": "deno compile --unstable -A --target x86_64-apple-darwin --output ./dist/install_x86_64-apple-darwin scripts/install.ts"
+    "compile:mac": "deno compile --unstable -A --target x86_64-apple-darwin --output ./dist/install_x86_64-apple-darwin scripts/install.ts",
+    "start_": "deno run --unstable -A scripts/install.ts"
   },
   "lint": {
     "rules": {

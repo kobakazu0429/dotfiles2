@@ -1,4 +1,2 @@
-import { update } from "./../utils/run.ts";
-
-// update("brew");
-update("karabiner");
+(await import("../modules/brew/mod.ts")).default.update();
+// update("karabiner");

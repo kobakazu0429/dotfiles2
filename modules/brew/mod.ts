@@ -2,21 +2,41 @@ import { join, resolve } from "path";
 import { __dirname } from "./../../utils/path.ts";
 import { modular } from "../../utils/modular.ts";
 import { execute } from "./../../utils/execute.ts";
+import { log } from "../../utils/logger.ts";
+import { minimum, personal } from "./brewfile.ts";
 
 // https://github.com/Homebrew/homebrew-bundle
 // https://gist.github.com/yoshimana/43b9205ddedad0ad65f2dee00c6f4261
+
+const brewfilePath = resolve(join(__dirname(import.meta.url), "Brewfile"));
+
+const writeBrewfile = (body: string) => {
+  Deno.writeTextFileSync(brewfilePath, body);
+};
+
+const envs = ["minimum", "personal"] as const;
+type Env = (typeof envs)[number];
+const getData = (env: Env) => {
+  if (env === "minimum") return minimum;
+  else if (env === "personal") return personal;
+
+  return minimum;
+};
 
 export default modular({
   name: "brew",
 
   install: () => {
+    let env = Deno.env.get("DOTFILES_ENV") as Env | undefined;
+    if (!env || !envs.includes(env)) {
+      log.info("Not specified DOTFILES_ENV, to set `minimum` as default.");
+      env = "minimum";
+    }
+    const data = getData(env);
+
+    writeBrewfile(data.join("\n"));
     execute("brew", "upgrade");
-    execute(
-      "brew",
-      "bundle",
-      "--file",
-      resolve(join(__dirname(import.meta.url), "Brewfile"))
-    );
+    execute("brew", "bundle", "--file", brewfilePath);
   },
 
   update: () => {
@@ -27,7 +47,7 @@ export default modular({
       "--force",
       "--describe",
       "--file",
-      resolve(join(__dirname(import.meta.url), "Brewfile"))
+      brewfilePath
     );
   },
 

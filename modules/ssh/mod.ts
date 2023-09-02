@@ -40,6 +40,10 @@ export default modular({
   name: "ssh",
 
   install: () => {
+    if (checkSSHConnection()) {
+      return;
+    }
+
     try {
       Deno.statSync(destPath);
       log.info("Already generated GitHub SSH key.");

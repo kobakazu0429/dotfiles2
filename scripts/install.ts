@@ -17,4 +17,5 @@ if (os !== "intel_mac") {
 (await import("../modules/clang/mod.ts")).default.install();
 (await import("../modules/csscomb/mod.ts")).default.install();
 (await import("../modules/karabiner/mod.ts")).default.install();
+(await import("../modules/nodebrew/mod.ts")).default.install();
 (await import("../modules/scripts/mod.ts")).default.install();

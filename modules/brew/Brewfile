@@ -8,6 +8,8 @@ tap "teamookla/speedtest"
 brew "bat"
 # Color-highlighted diff(1) output
 brew "colordiff"
+# Secure runtime for JavaScript and TypeScript
+brew "deno"
 # Play, record, convert, and stream audio and video
 brew "ffmpeg"
 # Remote repository management made easy
@@ -18,21 +20,122 @@ brew "git"
 brew "gnu-sed"
 # GNU utilities for networking
 brew "inetutils"
+# Update of iperf: measures TCP, UDP, and SCTP bandwidth
+brew "iperf3"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
 # Network Kanji code conversion Filter (NKF)
 brew "nkf"
 # Port scanning utility for large networks
 brew "nmap"
+# Node.js version manager
+brew "nodebrew"
+# Simplistic interactive filtering tool
+brew "peco"
+# Utility that provides fast incremental file transfer
+brew "rsync"
+# Display directories as trees (with optional color/HTML output)
 brew "tree"
 # Internet file retriever
 brew "wget"
-# UNIX shell (command interpreter)
-brew "zsh"
+# JavaScript package manager
+brew "yarn"
+# Download YouTube videos from the command-line
+brew "youtube-dl"
 # Extract, view, and test RAR archives
 brew "carlocab/personal/unrar"
+# Password manager that keeps all passwords secure behind one password
+cask "1password"
+# View, print, and comment on PDF documents
 cask "adobe-acrobat-reader"
 # Application uninstaller
 cask "appcleaner"
+# App to build and share containerized applications and microservices
+cask "docker"
+# Web browser
+cask "google-chrome"
+# Terminal emulator as alternative to Apple's Terminal app
+cask "iterm2"
+# Keyboard customizer
+cask "karabiner-elements"
+# Control your tools with a few keystrokes
+cask "raycast"
+# Team communication and collaboration software
+cask "slack"
+# Customizable email client
+cask "thunderbird"
 # Open-source code editor
 cask "visual-studio-code"
+# Multimedia player
+cask "vlc"
+vscode "adpyke.vscode-sql-formatter"
+vscode "alexcvzz.vscode-sqlite"
+vscode "apollographql.vscode-apollo"
+vscode "bibhasdn.unique-lines"
+vscode "bierner.markdown-preview-github-styles"
+vscode "bradlc.vscode-tailwindcss"
+vscode "christian-kohler.path-intellisense"
+vscode "CraigMaslowski.erb"
+vscode "cschlosser.doxdocgen"
+vscode "dbaeumer.vscode-eslint"
+vscode "denoland.vscode-deno"
+vscode "eamodio.gitlens"
+vscode "earshinov.permute-lines"
+vscode "eriklynd.json-tools"
+vscode "esbenp.prettier-vscode"
+vscode "GitHub.copilot"
+vscode "GrapeCity.gc-excelviewer"
+vscode "GraphQL.vscode-graphql"
+vscode "GraphQL.vscode-graphql-execution"
+vscode "GraphQL.vscode-graphql-syntax"
+vscode "hashicorp.terraform"
+vscode "hediet.vscode-drawio"
+vscode "jeff-hykin.better-cpp-syntax"
+vscode "koehlma.markdown-math"
+vscode "lokalise.i18n-ally"
+vscode "marp-team.marp-vscode"
+vscode "mechatroner.rainbow-csv"
+vscode "mrmlnc.vscode-scss"
+vscode "ms-azuretools.vscode-docker"
+vscode "ms-python.isort"
+vscode "ms-python.python"
+vscode "ms-python.vscode-pylance"
+vscode "ms-toolsai.jupyter"
+vscode "ms-toolsai.jupyter-keymap"
+vscode "ms-toolsai.jupyter-renderers"
+vscode "ms-toolsai.vscode-jupyter-cell-tags"
+vscode "ms-toolsai.vscode-jupyter-slideshow"
+vscode "ms-vscode-remote.remote-ssh"
+vscode "ms-vscode-remote.remote-ssh-edit"
+vscode "ms-vscode.cmake-tools"
+vscode "ms-vscode.cpptools"
+vscode "ms-vscode.cpptools-extension-pack"
+vscode "ms-vscode.cpptools-themes"
+vscode "ms-vscode.remote-explorer"
+vscode "ms-vscode.vscode-serial-monitor"
+vscode "ms-vsliveshare.vsliveshare"
+vscode "PKief.material-icon-theme"
+vscode "pnp.polacode"
+vscode "Prisma.prisma"
+vscode "redhat.vscode-xml"
+vscode "redhat.vscode-yaml"
+vscode "ritwickdey.LiveServer"
+vscode "runem.lit-plugin"
+vscode "rvest.vs-code-prettier-eslint"
+vscode "saikou9901.evilinspector"
+vscode "steoates.autoimport"
+vscode "stylelint.vscode-stylelint"
+vscode "svelte.svelte-vscode"
+vscode "syler.sass-indented"
+vscode "sysoev.language-stylus"
+vscode "tht13.html-preview-vscode"
+vscode "torn4dom4n.latex-support"
+vscode "twxs.cmake"
+vscode "unifiedjs.vscode-mdx"
+vscode "vsciot-vscode.vscode-arduino"
+vscode "wix.vscode-import-cost"
+vscode "wmaurer.change-case"
+vscode "xaver.clang-format"
+vscode "yoavbls.pretty-ts-errors"
+vscode "zhuangtongfa.material-theme"
+vscode "ZixuanChen.vitest-explorer"

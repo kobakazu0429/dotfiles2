@@ -1,4 +1,5 @@
 export LANG=ja_JP.UTF-8
+export HOMEBREW_NO_ANALYTICS=1
 
 function add_to_path {
   case ":$PATH:" in
@@ -36,11 +37,11 @@ add_to_path $HOME/.local/bin
 # fi
 
 # pyenv
-export PYENV_ROOT=$HOME/.pyenv
-if [ -d $PYENV_ROOT ]; then
-  add_to_path $PYENV_ROOT/shims
-  eval "$(pyenv init -)"
-fi
+# export PYENV_ROOT=$HOME/.pyenv
+# if [ -d $PYENV_ROOT ]; then
+#   add_to_path $PYENV_ROOT/shims
+#   eval "$(pyenv init -)"
+# fi
 
 # goenv
 # export GOENV_ROOT=$HOME/.goenv
@@ -151,7 +152,7 @@ bindkey $terminfo[kcud1] history-substring-search-down
 unset key
 
 
-eval "$(op completion zsh)"; compdef _op op
+# eval "$(op completion zsh)"; compdef _op op
 
 alias la='l'
 # サイズ順

@@ -1,5 +1,5 @@
-import { join, resolve, basename, dirname } from "path";
-import { moveSync } from "fs";
+import { join, resolve, basename } from "path";
+import { moveSync, copySync } from "fs";
 import { modular } from "../../utils/modular.ts";
 import { execute } from "./../../utils/execute.ts";
 import { detectOS, type OS } from "./../../utils/os.ts";
@@ -19,29 +19,45 @@ const userFontDirectory: Record<OS, string> = {
 
 const downloadDirectory = tempDir();
 
+// REQUIRED: fix backquote bugs by fontforge
 // for VSCode
+// const RictyDiminished = () => {
+//   // find download url from https://rictyfonts.github.io/diminished
+//   const url =
+//     "https://rictyfonts.github.io/files/ricty_diminished-4.0.1.tar.gz";
+
+//   const downloadPath = resolve(join(downloadDirectory, basename(url)));
+//   const fontFilename = "RictyDiminished-Regular.ttf";
+//   const fontPath = resolve(join(downloadDirectory, fontFilename));
+//   const destPath = resolve(join(userFontDirectory[detectOS()], fontFilename));
+
+//   try {
+//     try {
+//       const info = Deno.statSync(destPath);
+//       if (info.isFile) {
+//         log.info("RictyDiminished is exist.");
+//         return;
+//       }
+//     } catch (_error) {
+//       // not exist
+//     }
+
+//     execute("wget", url, "-O", downloadPath);
+//     execute("tar", "-zxvf", downloadPath, "-C", dirname(downloadPath));
+//     moveSync(fontPath, destPath);
+//   } catch (error) {
+//     log.warning(error);
+//   }
+// };
+
 const RictyDiminished = () => {
-  // find download url from https://rictyfonts.github.io/diminished
-  const url =
-    "https://rictyfonts.github.io/files/ricty_diminished-4.1.1.tar.gz";
+  const files = ["RictyDiminished-Regular.ttf"];
+  for (const file of files) {
+    const source = resolve(join(__dirname(import.meta.url), file));
+    const to = resolve(join(userFontDirectory[detectOS()], file));
 
-  const downloadPath = resolve(join(downloadDirectory, basename(url)));
-  const fontFilename = "RictyDiminished-Regular.ttf";
-  const fontPath = resolve(join(downloadDirectory, fontFilename));
-  const destPath = resolve(join(userFontDirectory[detectOS()], fontFilename));
-
-  try {
-    const info = Deno.statSync(destPath);
-    if (info.isFile) {
-      log.info("RictyDiminished is exist.");
-      return;
-    }
-
-    execute("wget", url, "-O", downloadPath);
-    execute("tar", "-zxvf", downloadPath, "-C", dirname(downloadPath));
-    moveSync(fontPath, destPath);
-  } catch (error) {
-    log.warning(error);
+    // cannot symlink
+    copySync(source, to, { overwrite: true });
   }
 };
 
@@ -54,10 +70,14 @@ const SourceCodeProForPowerline = () => {
   const destPath = resolve(join(userFontDirectory[detectOS()], fontFilename));
 
   try {
-    const info = Deno.statSync(destPath);
-    if (info.isFile) {
-      log.info("SourceCodeProForPowerline is exist.");
-      return;
+    try {
+      const info = Deno.statSync(destPath);
+      if (info.isFile) {
+        log.info("SourceCodeProForPowerline is exist.");
+        return;
+      }
+    } catch (_error) {
+      // not exist
     }
 
     execute("wget", url, "-O", downloadPath);
