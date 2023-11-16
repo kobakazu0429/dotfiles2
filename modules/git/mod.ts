@@ -27,5 +27,5 @@ export default modular({
 
   update: async () => {},
 
-  cleanup: async () => {},
+  uninstall: async () => {},
 });

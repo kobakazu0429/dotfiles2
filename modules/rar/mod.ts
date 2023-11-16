@@ -35,7 +35,7 @@ export default modular({
 
   update: () => {},
 
-  cleanup: () => {
+  uninstall: () => {
     for (const file of files) {
       Deno.removeSync(resolve(join(homeBinDir(), file)));
     }

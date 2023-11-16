@@ -1,6 +1,6 @@
 import { log } from "./logger.ts";
 
-export type Fns = "install" | "update" | "cleanup";
+export type Fns = "install" | "update" | "uninstall";
 
 export type Module = {
   name: string;
@@ -32,7 +32,7 @@ const messageMapper: Record<
     after: "Updated",
     onFailed: "update",
   },
-  cleanup: {
+  uninstall: {
     before: "Uninstalling",
     after: "Uninstalled",
     onFailed: "uninstall",
@@ -58,9 +58,9 @@ const isFns = (prop: unknown): prop is Fns => {
   if (typeof prop !== "string")
     throw new Error(`\`prop\` is ${typeof prop}, expected string. (${prop})`);
 
-  if (!["install", "update", "cleanup"].includes(prop))
+  if (!["install", "update", "uninstall"].includes(prop))
     throw new Error(
-      `\`prop\` is ${prop}, expected install, update or cleanup.`
+      `\`prop\` is ${prop}, expected install, update or uninstall.`
     );
 
   return true;

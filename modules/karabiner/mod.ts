@@ -55,5 +55,5 @@ export default modular({
     }
   },
 
-  cleanup: async () => {},
+  uninstall: async () => {},
 });

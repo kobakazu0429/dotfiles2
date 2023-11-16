@@ -29,7 +29,7 @@ export default modular({
 
   update: () => {},
 
-  cleanup: () => {
+  uninstall: () => {
     for (const [, alias] of cmds) {
       const to = resolve(join(homeBinDir(), alias));
       Deno.removeSync(to);

@@ -22,5 +22,5 @@ export default modular({
 
   update: () => {},
 
-  cleanup: () => {},
+  uninstall: () => {},
 });
