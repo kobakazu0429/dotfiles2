@@ -41,8 +41,9 @@ export const personal = [
   `mas "LINE WORKS", id: 6447544433`,
   `mas "Tailscale", id: 1475387142`,
 
-  `tap "carlocab/personal"`,
-  `brew "carlocab/personal/unrar"`, // Extract, view, and test RAR archives,
+  // too old, install by modules
+  // `tap "carlocab/personal"`,
+  // `brew "carlocab/personal/unrar"`, // Extract, view, and test RAR archives,
 
   `tap "teamookla/speedtest"`,
   `brew "speedtest"`,

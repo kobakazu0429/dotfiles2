@@ -8,6 +8,10 @@ export const homeDir = () => {
   Deno.exit(1);
 };
 
+export const homeBinDir = () => {
+  return resolve(join(homeDir(), "bin"));
+};
+
 export const tempDir = () => {
   const path =
     Deno.env.get("TMPDIR") ??
