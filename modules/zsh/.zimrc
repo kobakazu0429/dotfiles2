@@ -9,7 +9,9 @@ zmodule environment
 zmodule input
 
 # カスタム端末のタイトルを設定
-# zmodule termtitle
+zmodule termtitle
+zstyle ':zim:termtitle' format '%m: %~'
+
 
 # ユーティリティのエイリアスや関数。ls, grep, lessに色をつける
 zmodule utility
