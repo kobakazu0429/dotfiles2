@@ -1,33 +1,69 @@
 import { log } from "./logger.ts";
 
+export type Fns = "install" | "update" | "cleanup";
+
 export type Module = {
   name: string;
-  install: () => void;
-  update: () => void;
-  cleanup: () => void;
-};
+} & { [Fn in Fns]: () => void };
 
 export type Options<Target extends Module> = {
   interceptors: {
-    before: (target: Target) => void;
-    after: (target: Target) => void;
+    before: (prop: Fns, target: Target) => void;
+    after: (prop: Fns, target: Target) => void;
   };
-  onFailed: (error: Error, target: Target) => void;
+  onFailed: (error: Error, prop: Fns, target: Target) => void;
+};
+
+const messageMapper: Record<
+  Fns,
+  Record<
+    | keyof Omit<Options<Module>, "interceptors">
+    | keyof Options<Module>["interceptors"],
+    string
+  >
+> = {
+  install: {
+    before: "Installing",
+    after: "Installed",
+    onFailed: "install",
+  },
+  update: {
+    before: "Updating",
+    after: "Updated",
+    onFailed: "update",
+  },
+  cleanup: {
+    before: "Uninstalling",
+    after: "Uninstalled",
+    onFailed: "uninstall",
+  },
 };
 
 const defaultOptions: Options<Module> = {
   interceptors: {
-    before: (target) => {
-      log.info(`Installing ${target.name}.`);
+    before: (prop, target) => {
+      log.info(`${messageMapper[prop]["before"]} ${target.name}.`);
     },
-    after: (target) => {
-      log.info(`Installed ${target.name}.`);
+    after: (prop, target) => {
+      log.info(`${messageMapper[prop]["after"]} ${target.name}.`);
     },
   },
-  onFailed: (error, target) => {
-    log.error(`Failed to install ${target.name}.`);
+  onFailed: (error, prop, target) => {
+    log.error(`Failed to ${messageMapper[prop]["onFailed"]} ${target.name}.`);
     log.error(error);
   },
+};
+
+const isFns = (prop: unknown): prop is Fns => {
+  if (typeof prop !== "string")
+    throw new Error(`\`prop\` is ${typeof prop}, expected string. (${prop})`);
+
+  if (!["install", "update", "cleanup"].includes(prop))
+    throw new Error(
+      `\`prop\` is ${prop}, expected install, update or cleanup.`
+    );
+
+  return true;
 };
 
 export const modular = <MyModule extends Module>(
@@ -38,20 +74,21 @@ export const modular = <MyModule extends Module>(
 
   const proxy = new Proxy(module, {
     get(target, prop) {
-      // @ts-expect-error
-      const property = target[prop];
-      if (typeof property === "function") {
-        return (...args: unknown[]) => {
-          options.interceptors.before(target);
-          try {
-            property(...args);
-          } catch (error) {
-            options.onFailed(error, target);
-          }
-          options.interceptors.after(target);
-        };
+      if (isFns(prop)) {
+        const property = target[prop];
+        if (typeof property === "function") {
+          return () => {
+            options.interceptors.before(prop, target);
+            try {
+              property();
+            } catch (error) {
+              options.onFailed(error, prop, target);
+            }
+            options.interceptors.after(prop, target);
+          };
+        }
+        return property;
       }
-      return property;
     },
   });
 
