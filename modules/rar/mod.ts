@@ -1,4 +1,4 @@
-import { moveSync, remove } from "fs";
+import { moveSync } from "fs";
 import { basename, dirname, join, resolve } from "path";
 import { modular } from "../../utils/modular.ts";
 import { execute } from "./../../utils/execute.ts";

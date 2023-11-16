@@ -1,29 +1,51 @@
 tap "carlocab/personal"
 tap "homebrew/bundle"
-tap "homebrew/cask"
-tap "homebrew/core"
 tap "homebrew/services"
 tap "teamookla/speedtest"
+# Download with resuming and segmented downloading
+brew "aria2"
+# Official Amazon AWS command-line interface
+brew "awscli"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # Color-highlighted diff(1) output
 brew "colordiff"
 # Secure runtime for JavaScript and TypeScript
 brew "deno"
+# OpenType text shaping engine
+brew "harfbuzz"
+# OCR (Optical Character Recognition) engine
+brew "tesseract"
 # Play, record, convert, and stream audio and video
 brew "ffmpeg"
+# Command-line fuzzy finder written in Go
+brew "fzf"
 # Remote repository management made easy
 brew "ghq"
 # Distributed revision control system
 brew "git"
+# Git extension for versioning large files
+brew "git-lfs"
 # GNU implementation of the famous stream editor
 brew "gnu-sed"
+# Go version management
+brew "goenv"
+# Improved top (interactive process viewer)
+brew "htop"
+# Tools and libraries to manipulate images in many formats
+brew "imagemagick"
 # GNU utilities for networking
 brew "inetutils"
 # Update of iperf: measures TCP, UDP, and SCTP bandwidth
 brew "iperf3"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
+# Modern load testing tool, using Go and JavaScript
+brew "k6"
+# Mac App Store command-line interface
+brew "mas"
+# Hash utilities
+brew "md5sha1sum"
 # Network Kanji code conversion Filter (NKF)
 brew "nkf"
 # Port scanning utility for large networks
@@ -32,8 +54,12 @@ brew "nmap"
 brew "nodebrew"
 # Simplistic interactive filtering tool
 brew "peco"
+# Fast, disk space efficient package manager
+brew "pnpm"
 # Utility that provides fast incremental file transfer
 brew "rsync"
+# Tool to build, change, and version infrastructure
+brew "terraform"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
 # Internet file retriever
@@ -42,18 +68,22 @@ brew "wget"
 brew "yarn"
 # Download YouTube videos from the command-line
 brew "youtube-dl"
-# Extract, view, and test RAR archives
-brew "carlocab/personal/unrar"
 # Password manager that keeps all passwords secure behind one password
 cask "1password"
 # View, print, and comment on PDF documents
 cask "adobe-acrobat-reader"
 # Application uninstaller
 cask "appcleaner"
+# Tool to customize input devices and automate computer systems
+cask "bettertouchtool"
+# Voice and text chat software
+cask "discord"
 # App to build and share containerized applications and microservices
 cask "docker"
 # Web browser
 cask "google-chrome"
+# Set of tools to manage resources and applications hosted on Google Cloud
+cask "google-cloud-sdk"
 # Terminal emulator as alternative to Apple's Terminal app
 cask "iterm2"
 # Keyboard customizer
@@ -64,10 +94,18 @@ cask "raycast"
 cask "slack"
 # Customizable email client
 cask "thunderbird"
+# Web browser focusing on security
+cask "tor-browser"
 # Open-source code editor
 cask "visual-studio-code"
 # Multimedia player
 cask "vlc"
+mas "Hex Fiend", id: 1342896380
+mas "LINE", id: 539883307
+mas "LINE WORKS", id: 6447544433
+mas "Tailscale", id: 1475387142
+mas "The Unarchiver", id: 425424353
+mas "Yoink", id: 457622435
 vscode "adpyke.vscode-sql-formatter"
 vscode "alexcvzz.vscode-sqlite"
 vscode "apollographql.vscode-apollo"
@@ -84,6 +122,8 @@ vscode "earshinov.permute-lines"
 vscode "eriklynd.json-tools"
 vscode "esbenp.prettier-vscode"
 vscode "GitHub.copilot"
+vscode "GitHub.copilot-chat"
+vscode "golang.go"
 vscode "GrapeCity.gc-excelviewer"
 vscode "GraphQL.vscode-graphql"
 vscode "GraphQL.vscode-graphql-execution"
