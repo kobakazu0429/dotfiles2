@@ -152,6 +152,14 @@ bindkey $terminfo[kcuu1] history-substring-search-up
 bindkey $terminfo[kcud1] history-substring-search-down
 unset key
 
+function fzf-select-history() {
+    BUFFER=$(history -n -r 1 | fzf --query "$LBUFFER")
+    CURSOR=$#BUFFER
+    zle reset-prompt
+}
+zle -N fzf-select-history
+bindkey '^r' fzf-select-history
+
 
 # eval "$(op completion zsh)"; compdef _op op
 
@@ -207,6 +215,15 @@ function cdiff () {
 }
 
 
+# nkfc
+## cat file | to_nkfc > file2
+alias to_nkfc="ruby -nle 'puts $_.unicode_normalize(:nfkc)'"
+
+function nkfc_cd() {
+  cd "$(ls | ruby -nle 'puts [$_, ":", $_.unicode_normalize(:nfkc)].join' | fzf --delimiter ":" --with-nth 2 | cut -d ":" -f 1)"
+}
+export FZF_DEFAULT_OPTS="--extended --cycle --height=40% --layout=reverse"
+
 # youtube-dl
 # option:mp4 quality=max
 function youtubemp4 () {
@@ -235,7 +252,7 @@ function show-npm-scripts() {
   elif [ -e "deno.json" ]; then
     cat deno.json | jq -r ".scripts | to_entries[] | \"\(.key)\t\(.value)\"" | column -t -s "`printf '\t'`"
   elif [ -e "deno.jsonc" ]; then
-    cat deno.jsonc | jq -r ".tasks | to_entries[] | \"\(.key)\t\(.value)\"" | column -t -s "`printf '\t'`"
+    cat deno.jsonc | npx strip-json-comments-cli | jq -r ".tasks | to_entries[] | \"\(.key)\t\(.value)\"" | column -t -s "`printf '\t'`"
   fi
 }
 
