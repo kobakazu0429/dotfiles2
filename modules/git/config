@@ -16,11 +16,13 @@
 [user]
   name = kobakazu0429
   email = kobakazu10@gmail.com
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO+xpuW30JfmKeyzuJh3e/9F9muVLBE6ZhSb4Dr0goNO
 [core]
   pager        = less -cm
   quotepath    = false
 [commit]
   template = /Users/kazu/.stCommitMsg
+  gpgsign = true
 [fetch]
   prune = true
 [filter "lfs"]
@@ -36,3 +38,7 @@
     log = diff-highlight | less
     show = diff-highlight | less
     diff = diff-highlight | less
+[gpg]
+  format = ssh
+[gpg "ssh"]
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
