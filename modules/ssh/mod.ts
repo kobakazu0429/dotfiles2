@@ -48,8 +48,8 @@ export default modular({
       Deno.statSync(destPath);
       log.info("Already generated GitHub SSH key.");
     } catch {
-      ensureDirSync(dirname(config));
-      ensureFileSync(config);
+      ensureDirSync(dirname(configPath));
+      ensureFileSync(configPath);
       Deno.writeTextFileSync(configPath, config);
 
       execute("ssh-keygen", "-t", "ed25519", "-f", destPath, "-N", "");
