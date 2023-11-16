@@ -1,4 +1,6 @@
-const { spawn } = require("child_process")
+#! /usr/bin/env node
+
+const { spawn } = require("child_process");
 
 function pbcopy(data) {
   const { stdin } = spawn("pbcopy");
@@ -8,8 +10,8 @@ function pbcopy(data) {
 const [, , raw] = process.argv;
 
 try {
-  const url = new URL(raw)
-  url.searchParams.forEach(param => {
+  const url = new URL(raw);
+  url.searchParams.forEach((param) => {
     const decoded = Buffer.from(param, "base64").toString("utf8");
     if (decoded.startsWith("http")) {
       console.log(decoded);

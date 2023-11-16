@@ -45,11 +45,11 @@ add_to_path $HOME/bin
 # fi
 
 # goenv
-# export GOENV_ROOT=$HOME/.goenv
-# if [ -d $GOENV_ROOT ]; then
-#   add_to_path $GOENV_ROOT/bin
-#   eval "$(goenv init -)"
-# fi
+export GOENV_ROOT=$HOME/.goenv
+if [ -d $GOENV_ROOT ]; then
+  add_to_path $GOENV_ROOT/bin
+  eval "$(goenv init -)"
+fi
 
 
 export PATH
@@ -145,6 +145,8 @@ fi
 # Initialize modules.
 source ${ZIM_HOME}/init.zsh
 
+# autoload -U promptinit; promptinit
+# prompt pure
 
 # 入力中のテキストからヒストリ検索
 zmodload -F zsh/terminfo +p:terminfo
@@ -275,18 +277,11 @@ function rarr() {
   rar a "$1.rar" "$1" -x"**/.*" -qo+
 }
 
-alias lsrar="zx $MY_SCRIPTS/lsrar.js"
-
 
 # find
 function not-image-find() {
   find -E . -type f ! -iregex ".*\.(png|jpg|jpeg)"
 }
-
-
-# scripts
-## base64
-alias b6="node $MY_SCRIPTS/base64.js"
 
 
 # perf
