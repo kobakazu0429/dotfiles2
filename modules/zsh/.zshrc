@@ -217,6 +217,11 @@ function cdiff () {
 }
 
 
+# speedtest
+## 48463=IPA CyberLab 400G
+alias speedtest_IPA_CyberLab_400G="speedtest -s 48463"
+
+
 # nkfc
 ## cat file | to_nkfc > file2
 alias to_nkfc="ruby -nle 'puts $_.unicode_normalize(:nfkc)'"
