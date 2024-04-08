@@ -4,11 +4,13 @@ export const minimum = [
 
   `brew "bat"`, // Clone of cat(1) with syntax highlighting and Git integration
   `brew "colordiff"`, // Color-highlighted diff(1) output
+  `brew "coreutils"`, // GNU File, Shell, and Text utilities
   `brew "deno"`, // Secure runtime for JavaScript and TypeScript
   `brew "fzf"`, // Command-line fuzzy finder written in Go
   `brew "ghq"`, // Remote repository management made easy
   `brew "git"`, // Distributed revision control system
   `brew "git-lfs"`, // Git extension for versioning large files
+  `brew "gnu-time"`, // GNU implementation of time utility
   `brew "gnu-sed"`, // GNU implementation of the famous stream editor
   `brew "htop"`, // Improved top (interactive process viewer)
   `brew "imagemagick"`, // Tools and libraries to manipulate images in many formats
@@ -25,7 +27,6 @@ export const minimum = [
   `brew "tree"`, // Display directories as trees (with optional color/HTML output)
   `brew "wget"`, // Internet file retriever
   // `brew "yarn"`, // JavaScript package manager
-  `brew "teamookla/speedtest/speedtest"`, // Ookla Speedtest
 
   `cask "1password"`, // Password manager that keeps all passwords secure behind one password
   `cask "1password-cli"`, // Command-line interface for 1Password
@@ -60,6 +61,7 @@ export const personal = [
   `brew "aria2"`, // Download with resuming and segmented downloading
   // `brew "ffmpeg"`, // Play, record, convert, and stream audio and video
   // `brew "youtube-dl"`, // Download YouTube videos from the command-line
+  `brew "teamookla/speedtest/speedtest"`, // Ookla Speedtest
 
   // `cask "appcleaner"`, // Application uninstaller
   `cask "tor-browser"`, // Web browser focusing on security

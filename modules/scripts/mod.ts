@@ -8,6 +8,8 @@ import { __dirname, homeBinDir } from "../../utils/path.ts";
 const cmds: [source: string, alias: string][] = [
   ["base64.js", "b6"],
   ["lsrar.js", "lsrar"],
+  ["rename.mjs", "rename"],
+  ["crop.mjs", "mcrop"],
 ];
 
 export default modular({
