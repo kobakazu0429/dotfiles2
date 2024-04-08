@@ -26,8 +26,9 @@ export default modular({
 
   install: () => {
     const data = getData(getEnv());
-
     writeBrewfile(data.join("\n"));
+    
+    execute("brew", "update");
     execute("brew", "upgrade");
     execute("brew", "bundle", "--file", brewfilePath);
   },

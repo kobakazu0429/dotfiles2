@@ -2,8 +2,8 @@ import { detectOS } from "./../utils/os.ts";
 import { getEnv } from "./../utils/env.ts";
 
 const os = detectOS();
-if (os !== "intel_mac") {
-  throw new Error("m1 or ubuntu are not supported perfectly :C");
+if (os === "ubuntu") {
+  throw new Error("ubuntu is not supported perfectly :C");
 }
 
 // await which("git", { exitIfNotFound: true });

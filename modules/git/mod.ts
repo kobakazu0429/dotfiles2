@@ -6,7 +6,7 @@ import { homeDir, __dirname } from "./../../utils/path.ts";
 
 const diffHighlight: Record<OS, string> = {
   intel_mac: "/usr/local/share/git-core/contrib/diff-highlight/diff-highlight",
-  m1_mac: "/opt/homebrew/share/git-core/contrib/diff-highlight/diff-highlight ",
+  arm_mac: "/opt/homebrew/share/git-core/contrib/diff-highlight/diff-highlight",
   ubuntu: "/usr/share/doc/git/contrib/diff-highlight/diff-highlight",
 };
 
@@ -22,7 +22,10 @@ export default modular({
       symlink(source, to);
     }
 
-    symlink(diffHighlight[detectOS()], "/usr/local/bin/diff-highlight");
+    symlink(
+      diffHighlight[detectOS()],
+      resolve(join(homeDir(), ".local", "bin", "diff-highlight"))
+    );
   },
 
   update: async () => {},

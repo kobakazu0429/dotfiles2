@@ -13,7 +13,7 @@ import { log } from "../../utils/logger.ts";
 
 const userFontDirectory: Record<OS, string> = {
   intel_mac: resolve(join(homeDir(), "Library", "Fonts")),
-  m1_mac: resolve(join(homeDir(), "Library", "Fonts")),
+  arm_mac: resolve(join(homeDir(), "Library", "Fonts")),
   ubuntu: resolve(join(XDG_DATA_HOME, "fonts")),
 };
 
