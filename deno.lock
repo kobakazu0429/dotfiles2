@@ -1,5 +1,16 @@
 {
-  "version": "2",
+  "version": "3",
+  "packages": {
+    "specifiers": {
+      "npm:ts-dedent@2.2.0": "npm:ts-dedent@2.2.0"
+    },
+    "npm": {
+      "ts-dedent@2.2.0": {
+        "integrity": "sha512-q5W7tVM71e2xjHZTlgfTDoPF/SmqKG5hddq9SzR49CH2hayqRKJtQ4mtRlSxKaJlR/+9rEM+mnBHf7I2/BQcpQ==",
+        "dependencies": {}
+      }
+    }
+  },
   "remote": {
     "https://deno.land/std@0.191.0/_util/asserts.ts": "178dfc49a464aee693a7e285567b3d0b555dc805ff490505a8aae34f9cfb1462",
     "https://deno.land/std@0.191.0/_util/os.ts": "d932f56d41e4f6a6093d56044e29ce637f8dcc43c5a90af43504a889cf1775e3",
@@ -33,15 +44,9 @@
     "https://deno.land/std@0.191.0/path/separator.ts": "0fb679739d0d1d7bf45b68dacfb4ec7563597a902edbaf3c59b50d5bcadd93b1",
     "https://deno.land/std@0.191.0/path/win32.ts": "d186344e5583bcbf8b18af416d13d82b35a317116e6460a5a3953508c3de5bba"
   },
-  "npm": {
-    "specifiers": {
-      "ts-dedent@2.2.0": "ts-dedent@2.2.0"
-    },
-    "packages": {
-      "ts-dedent@2.2.0": {
-        "integrity": "sha512-q5W7tVM71e2xjHZTlgfTDoPF/SmqKG5hddq9SzR49CH2hayqRKJtQ4mtRlSxKaJlR/+9rEM+mnBHf7I2/BQcpQ==",
-        "dependencies": {}
-      }
-    }
+  "workspace": {
+    "dependencies": [
+      "npm:ts-dedent@2.2.0"
+    ]
   }
 }
