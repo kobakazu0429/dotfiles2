@@ -5,10 +5,10 @@ import { execute } from "./../../utils/execute.ts";
 import { OS, detectOS } from "./../../utils/os.ts";
 import { __dirname, homeBinDir, tempDir } from "./../../utils/path.ts";
 
-const ver = "623";
+const ver = "700";
 const urls: Record<OS, string> = {
   intel_mac: `https://www.rarlab.com/rar/rarmacos-x64-${ver}.tar.gz`,
-  m1_mac: `https://www.rarlab.com/rar/rarmacos-arm-${ver}.tar.gz`,
+  arm_mac: `https://www.rarlab.com/rar/rarmacos-arm-${ver}.tar.gz`,
   ubuntu: `https://www.rarlab.com/rar/rarlinux-x64-${ver}.tar.gz`,
 };
 const files = ["rar", "unrar"];
