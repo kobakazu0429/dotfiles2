@@ -1,4 +1,5 @@
 import { resolve, join, dirname, fromFileUrl } from "path";
+import { detectOS } from "./os.ts";
 import { log } from "./logger.ts";
 
 export const homeDir = () => {
@@ -21,6 +22,15 @@ export const tempDir = () => {
   if (path) return path;
   log.error("Can't get temp path");
   Deno.exit(1);
+};
+
+export const desktopDir = () => {
+  const os = detectOS();
+  if (os === "intel_mac" || os === "arm_mac") {
+    return resolve(join(homeDir(), "Desktop"));
+  } else {
+    throw new Error("Not support desktop dir for this OS");
+  }
 };
 
 export const __dirname = (url: ImportMeta["url"]) => dirname(fromFileUrl(url));

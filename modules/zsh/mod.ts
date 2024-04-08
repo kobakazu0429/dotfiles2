@@ -2,6 +2,7 @@ import { join, resolve } from "path";
 import { symlink } from "../../utils/symlink.ts";
 import { __dirname, XDG_CONFIG_HOME } from "./../../utils/path.ts";
 import { modular } from "../../utils/modular.ts";
+import { execute } from "./../../utils/execute.ts";
 
 export default modular({
   name: "zsh",
@@ -17,6 +18,15 @@ export default modular({
       const source = resolve(join(__dirname(import.meta.url), filename));
       const to = resolve(join(_to, filename));
       symlink(source, to);
+    }
+
+    if (!Deno.readTextFileSync("/etc/zshenv").includes("ZDOTDIR")) {
+      execute(
+        "sudo",
+        "sh",
+        "-c",
+        'echo "ZDOTDIR=$HOME/.config/zsh" >> /etc/zshenv'
+      );
     }
   },
 
