@@ -10,6 +10,10 @@ function add_to_path {
   esac
 }
 
+add_to_path /usr/local/opt/coreutils/libexec/gnubin
+add_to_path /usr/local/opt/findutils/libexec/gnubin
+add_to_path /usr/local/opt/gnu-time/libexec/gnubin
+add_to_path /usr/local/opt/gnu-sed/libexec/gnubin
 add_to_path /usr/local/sbin
 add_to_path /usr/local/bin
 add_to_path /usr/bin
@@ -100,8 +104,8 @@ setopt no_beep
 setopt nolistbeep
 
 # timeコマンドの出力フォーマットを変更
-TIMEFMT=$'\n\n----------------------\nProgram : %J\nCPU     : %P\nuser    : %*Us\nsystem  : %*Ss\ntotal   : %*Es\n----------------------\n'
-
+export TIMEFMT=$'\n\n----------------------\nProgram : %J\nCPU     : %P\nuser    : %*Us\nsystem  : %*Ss\ntotal   : %*Es\n----------------------\n'
+export FZF_DEFAULT_OPTS="--extended --cycle --height=40% --layout=reverse"
 
 # Set editor default keymap to emacs (`-e`) or vi (`-v`)
 # bindkey -v
@@ -157,12 +161,20 @@ bindkey $terminfo[kcud1] history-substring-search-down
 unset key
 
 function fzf-select-history() {
-    BUFFER=$(history -n -r 1 | fzf --query "$LBUFFER")
+    BUFFER=$(history -n -r 1 | fzf --exact --query "$LBUFFER")
     CURSOR=$#BUFFER
     zle reset-prompt
 }
 zle -N fzf-select-history
 bindkey '^r' fzf-select-history
+
+function fzf-select-snippet() {
+    local snippets=$(cat $DOTFILES/modules/zsh/.snippets | fzf --border=vertical --height 40% --layout=reverse --no-clear)
+    LBUFFER="${LBUFFER}${snippets}"
+    zle reset-prompt
+}
+zle -N fzf-select-snippet
+bindkey '^o' fzf-select-snippet
 
 
 # eval "$(op completion zsh)"; compdef _op op
@@ -174,6 +186,8 @@ alias lS='ll -S'
 alias lT='ll -t'
 
 alias tree='tree -NC'
+
+alias o='open .'
 
 # git
 alias g="git"
@@ -190,7 +204,7 @@ alias gch="git checkout"
 
 function asd() {
   local root=$(ghq root)
-  local repo=$(find $root -d 3 -maxdepth 3 | sort | grep -v DS_Store | sed -e "s#$root/##g" | peco)
+  local repo=$(find $root -mindepth 3 -maxdepth 3 | sort | grep -v DS_Store | sed -e "s#$root/##g" | peco)
   if [ -n "$repo" ]; then
     cd "$root/$repo"
   fi
@@ -231,7 +245,6 @@ alias to_nkfc="ruby -nle 'puts $_.unicode_normalize(:nfkc)'"
 function nkfc_cd() {
   cd "$(ls | ruby -nle 'puts [$_, ":", $_.unicode_normalize(:nfkc)].join' | fzf --delimiter ":" --with-nth 2 | cut -d ":" -f 1)"
 }
-export FZF_DEFAULT_OPTS="--extended --cycle --height=40% --layout=reverse"
 
 # youtube-dl
 # option:mp4 quality=max
@@ -287,7 +300,21 @@ function rarr() {
 
 # find
 function not-image-find() {
-  find -E . -type f ! -iregex ".*\.(png|jpg|jpeg)"
+  find . -type f -regextype egrep ! -iregex ".*\.(png|jpe?g)"
+}
+
+
+# make
+function m() {
+  if [ ! -e "Makefile" ]; then
+    echo "Makefile not found"
+    return 1
+  fi
+
+  t=$(cat Makefile | grep -e '^\.PHONY: ' | cut -f2- -d' ' | tr ' ' '\n' | fzf --preview "$DOTFILES/modules/scripts/make-fzf.ts {}" --preview-window=border-left)
+  if [ -n "$t" ]; then
+    make "$t"
+  fi
 }
 
 
