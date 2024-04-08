@@ -27,7 +27,7 @@ export default modular({
   install: () => {
     const data = getData(getEnv());
     writeBrewfile(data.join("\n"));
-    
+
     execute("brew", "update");
     execute("brew", "upgrade");
     execute("brew", "bundle", "--file", brewfilePath);
@@ -42,6 +42,14 @@ export default modular({
       "--describe",
       "--file",
       brewfilePath
+    );
+    const brewfile = Deno.readTextFileSync(brewfilePath);
+    Deno.writeTextFileSync(
+      brewfilePath,
+      brewfile
+        .split("\n")
+        .filter((line) => !line.startsWith("vscode "))
+        .join("\n")
     );
   },
 

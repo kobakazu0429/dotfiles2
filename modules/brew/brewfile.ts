@@ -18,27 +18,30 @@ export const minimum = [
   `brew "mas"`, // Mac App Store command-line interface
   `brew "nkf"`, // Network Kanji code conversion Filter (NKF)
   `brew "nmap"`, // Port scanning utility for large networks
-  `brew "nodebrew"`, // Node.js version manager
+  // `brew "nodebrew"`, // Node.js version manager
   `brew "md5sha1sum"`, // Hash utilities
   `brew "peco"`, // Simplistic interactive filtering tool
   `brew "rsync"`, // Utility that provides fast incremental file transfer
   `brew "tree"`, // Display directories as trees (with optional color/HTML output)
   `brew "wget"`, // Internet file retriever
-  `brew "yarn"`, // JavaScript package manager
+  // `brew "yarn"`, // JavaScript package manager
+  `brew "teamookla/speedtest/speedtest"`, // Ookla Speedtest
 
   `cask "1password"`, // Password manager that keeps all passwords secure behind one password
+  `cask "1password-cli"`, // Command-line interface for 1Password
   `cask "adobe-acrobat-reader"`, // View, print, and comment on PDF documents
-  `cask "bettertouchtool"`, // Tool to customize input devices and automate computer systems
+  `cask "bettertouchtool"`, // Tool to customise input devices and automate computer systems
+  `cask "db-browser-for-sqlite"`, // Browser for SQLite databases
   `cask "discord"`, // Voice and text chat software
   `cask "google-chrome"`, // Web browser
   `cask "iterm2"`, // Terminal emulator as alternative to Apple's Terminal app
-  `cask "karabiner-elements"`, // Keyboard customizer
+  `cask "karabiner-elements"`, // Keyboard customiser
   `cask "raycast"`, // Control your tools with a few keystrokes
   `cask "slack"`, // Team communication and collaboration software
   `cask "visual-studio-code"`, // Open-source code editor
   `cask "vlc"`, // Multimedia player
 
-  `mas "Hex Fiend", id: 1342896380`,
+  // `mas "Hex Fiend", id: 1342896380`,
   `mas "The Unarchiver", id: 425424353`,
   `mas "Yoink", id: 457622435`,
 ];
@@ -47,20 +50,17 @@ export const personal = [
   ...minimum,
 
   `mas "LINE", id: 539883307`,
-  `mas "LINE WORKS", id: 6447544433`,
-  `mas "Tailscale", id: 1475387142`,
+  // `mas "LINE WORKS", id: 6447544433`,
+  // `mas "Tailscale", id: 1475387142`,
 
   // too old, install by modules
   // `tap "carlocab/personal"`,
   // `brew "carlocab/personal/unrar"`, // Extract, view, and test RAR archives,
 
-  `tap "teamookla/speedtest"`,
-  `brew "speedtest"`,
-
   `brew "aria2"`, // Download with resuming and segmented downloading
-  `brew "ffmpeg"`, // Play, record, convert, and stream audio and video
-  `brew "youtube-dl"`, // Download YouTube videos from the command-line
+  // `brew "ffmpeg"`, // Play, record, convert, and stream audio and video
+  // `brew "youtube-dl"`, // Download YouTube videos from the command-line
 
-  `cask "appcleaner"`, // Application uninstaller
-  `cask "thunderbird"`, // Customizable email client
+  // `cask "appcleaner"`, // Application uninstaller
+  `cask "tor-browser"`, // Web browser focusing on security
 ];
