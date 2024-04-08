@@ -1,6 +1,8 @@
 export LANG=ja_JP.UTF-8
 export HOMEBREW_NO_ANALYTICS=1
 
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 function add_to_path {
   case ":$PATH:" in
     *":$1:"*) :;; # already there
