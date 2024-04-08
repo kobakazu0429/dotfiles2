@@ -3,6 +3,7 @@ import { symlink } from "../../utils/symlink.ts";
 import { __dirname, XDG_CONFIG_HOME } from "./../../utils/path.ts";
 import { modular } from "../../utils/modular.ts";
 import { execute } from "./../../utils/execute.ts";
+import { homeDir } from "../../utils/path.ts";
 
 export default modular({
   name: "zsh",
@@ -28,6 +29,8 @@ export default modular({
         'echo "ZDOTDIR=$HOME/.config/zsh" >> /etc/zshenv'
       );
     }
+
+    Deno.writeTextFileSync(resolve(join(homeDir(), ".hushlogin")), "");
   },
 
   update: () => {},

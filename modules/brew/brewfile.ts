@@ -21,7 +21,6 @@ export const minimum = [
   `brew "nkf"`, // Network Kanji code conversion Filter (NKF)
   `brew "nmap"`, // Port scanning utility for large networks
   // `brew "nodebrew"`, // Node.js version manager
-  `brew "md5sha1sum"`, // Hash utilities
   `brew "peco"`, // Simplistic interactive filtering tool
   `brew "rsync"`, // Utility that provides fast incremental file transfer
   `brew "tree"`, // Display directories as trees (with optional color/HTML output)
@@ -52,7 +51,7 @@ export const personal = [
 
   `mas "LINE", id: 539883307`,
   // `mas "LINE WORKS", id: 6447544433`,
-  // `mas "Tailscale", id: 1475387142`,
+  `mas "Tailscale", id: 1475387142`,
 
   // too old, install by modules
   // `tap "carlocab/personal"`,
@@ -63,6 +62,9 @@ export const personal = [
   // `brew "youtube-dl"`, // Download YouTube videos from the command-line
   `brew "teamookla/speedtest/speedtest"`, // Ookla Speedtest
 
-  // `cask "appcleaner"`, // Application uninstaller
+  `cask "appcleaner"`, // Application uninstaller
   `cask "tor-browser"`, // Web browser focusing on security
+
+  // Failed to install
+  // `cask "logi-options-plus"`
 ];

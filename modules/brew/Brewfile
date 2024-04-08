@@ -7,6 +7,8 @@ brew "aria2"
 brew "bat"
 # Color-highlighted diff(1) output
 brew "colordiff"
+# GNU File, Shell, and Text utilities
+brew "coreutils"
 # Secure runtime for JavaScript and TypeScript
 brew "deno"
 # Command-line fuzzy finder written in Go
@@ -19,6 +21,8 @@ brew "git"
 brew "git-lfs"
 # GNU implementation of the famous stream editor
 brew "gnu-sed"
+# GNU implementation of time utility
+brew "gnu-time"
 # Improved top (interactive process viewer)
 brew "htop"
 # Tools and libraries to manipulate images in many formats
@@ -31,8 +35,6 @@ brew "iperf3"
 brew "jq"
 # Mac App Store command-line interface
 brew "mas"
-# Hash utilities
-brew "md5sha1sum"
 # Network Kanji code conversion Filter (NKF)
 brew "nkf"
 # Port scanning utility for large networks
@@ -53,6 +55,8 @@ cask "1password"
 cask "1password-cli"
 # View, print, and comment on PDF documents
 cask "adobe-acrobat-reader"
+# Application uninstaller
+cask "appcleaner"
 # Tool to customise input devices and automate computer systems
 cask "bettertouchtool"
 # Browser for SQLite databases
@@ -69,6 +73,8 @@ cask "karabiner-elements"
 cask "raycast"
 # Team communication and collaboration software
 cask "slack"
+# Web browser focusing on security
+cask "tor-browser"
 # Open-source code editor
 cask "visual-studio-code"
 # Multimedia player
@@ -79,5 +85,6 @@ mas "Keynote", id: 409183694
 mas "LINE", id: 539883307
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
+mas "Tailscale", id: 1475387142
 mas "The Unarchiver", id: 425424353
 mas "Yoink", id: 457622435
