@@ -2,10 +2,8 @@ export LANG=ja_JP.UTF-8
 export HOMEBREW_NO_ANALYTICS=1
 
 if [ "$(uname -m)" = "arm64" ]; then
-  # arm
   eval "$(/opt/homebrew/bin/brew shellenv)"
-else
-  # x86_64
+elif [ "$(uname -m)" = "x86_64" ]; then
   # noop
 fi
 
