@@ -13,10 +13,12 @@ const urls: Record<OS, string> = {
 };
 const files = ["rar", "unrar"];
 
+// supported brew cask
 export default modular({
   name: "rar",
 
   install: () => {
+    return;
     const url = urls[detectOS()];
 
     const filename = basename(url);

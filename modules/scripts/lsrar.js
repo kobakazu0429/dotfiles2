@@ -1,5 +1,14 @@
 #! /usr/bin/env zx
 
+const showCommandOutput = () => {
+  $.verbose = true;
+};
+const hiddenCommandOutput = () => {
+  $.verbose = false;
+};
+
+showCommandOutput();
+
 async function main() {
   const [, , _debug] = process.argv;
 

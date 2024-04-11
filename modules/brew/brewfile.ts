@@ -63,6 +63,7 @@ export const personal = [
   `brew "teamookla/speedtest/speedtest"`, // Ookla Speedtest
 
   `cask "appcleaner"`, // Application uninstaller
+  `cask "rar"`, // Archive manager for data compression and backups
   `cask "tor-browser"`, // Web browser focusing on security
 
   // Failed to install

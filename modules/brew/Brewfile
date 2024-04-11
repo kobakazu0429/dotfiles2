@@ -45,6 +45,8 @@ brew "peco"
 brew "rsync"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
+# JavaScript toolchain manager for reproducible environments
+brew "volta"
 # Internet file retriever
 brew "wget"
 # Ookla Speedtest
@@ -69,6 +71,8 @@ cask "google-chrome"
 cask "iterm2"
 # Keyboard customiser
 cask "karabiner-elements"
+# Archive manager for data compression and backups
+cask "rar"
 # Control your tools with a few keystrokes
 cask "raycast"
 # Team communication and collaboration software
