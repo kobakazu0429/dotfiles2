@@ -31,8 +31,11 @@ add_to_path /usr/local/opt/openjdk/bin
 add_to_path /usr/local/opt/openssl/bin
 add_to_path /usr/local/opt/binutils/bin
 add_to_path /usr/local/opt/imagemagick@7/bin
-add_to_path $HOME/.nodebrew/current/bin
-add_to_path $HOME/.yarn/bin
+# add_to_path $HOME/.nodebrew/current/bin
+# add_to_path $HOME/.yarn/bin
+export PNPM_HOME=$HOME/.local/share/pnpm
+add_to_path $HOME/.volta/bin
+add_to_path $PNPM_HOME
 add_to_path $HOME/.local/bin
 add_to_path $HOME/bin
 

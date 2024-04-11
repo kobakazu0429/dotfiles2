@@ -16,10 +16,10 @@ export default modular({
   name: "scripts",
 
   install: () => {
-    which("yarn");
+    which("pnpm");
 
     const packages = ["zx"];
-    execute("yarn", "global", "add", ...packages);
+    execute("pnpm", "add", "-g", ...packages);
 
     for (const [sourceFile, alias] of cmds) {
       const source = resolve(join(__dirname(import.meta.url), sourceFile));

@@ -21,11 +21,11 @@ export const minimum = [
   `brew "nkf"`, // Network Kanji code conversion Filter (NKF)
   `brew "nmap"`, // Port scanning utility for large networks
   // `brew "nodebrew"`, // Node.js version manager
+  `brew "volta"`, // JavaScript toolchain manager for reproducible environments
   `brew "peco"`, // Simplistic interactive filtering tool
   `brew "rsync"`, // Utility that provides fast incremental file transfer
   `brew "tree"`, // Display directories as trees (with optional color/HTML output)
   `brew "wget"`, // Internet file retriever
-  // `brew "yarn"`, // JavaScript package manager
 
   `cask "1password"`, // Password manager that keeps all passwords secure behind one password
   `cask "1password-cli"`, // Command-line interface for 1Password
