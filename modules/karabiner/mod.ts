@@ -1,7 +1,7 @@
 import { join, resolve, relative } from "path";
 import { modular } from "../../utils/modular.ts";
 import { symlink } from "../../utils/symlink.ts";
-import { homeDir, __dirname } from "./../../utils/path.ts";
+import { __dirname, XDG_CONFIG_HOME } from "./../../utils/path.ts";
 import { log } from "../../utils/logger.ts";
 
 export default modular({
@@ -15,14 +15,14 @@ export default modular({
 
     for (const file of files) {
       const source = resolve(join(__dirname(import.meta.url), file));
-      const to = resolve(join(homeDir(), ".config", "karabiner", file));
+      const to = resolve(join(XDG_CONFIG_HOME, "karabiner", file));
       symlink(source, to);
     }
   },
 
   update: () => {
     const copyFiles: string[] = [];
-    const config = resolve(join(homeDir(), ".config", "karabiner"));
+    const config = resolve(join(XDG_CONFIG_HOME, "karabiner"));
 
     const walk = (
       path: string,
@@ -47,7 +47,7 @@ export default modular({
       const to = resolve(
         join(
           __dirname(import.meta.url),
-          relative(resolve(join(homeDir(), ".config", "karabiner")), source)
+          relative(resolve(join(XDG_CONFIG_HOME, "karabiner")), source)
         )
       );
       Deno.copyFileSync(source, to);
