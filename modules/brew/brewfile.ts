@@ -49,6 +49,7 @@ export const minimum = [
 export const personal = [
   ...minimum,
 
+  `mas "Disk Speed Test", id: 425264550`,
   `mas "LINE", id: 539883307`,
   // `mas "LINE WORKS", id: 6447544433`,
   `mas "Tailscale", id: 1475387142`,

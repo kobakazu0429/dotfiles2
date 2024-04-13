@@ -83,6 +83,7 @@ cask "tor-browser"
 cask "visual-studio-code"
 # Multimedia player
 cask "vlc"
+mas "Disk Speed Test", id: 425264550
 mas "iMovie", id: 408981434
 mas "LINE", id: 539883307
 mas "Tailscale", id: 1475387142
