@@ -10,15 +10,17 @@ export default modular({
 
   install: () => {
     if (!exists("/Applications/iTerm.app")) {
-      log.warning(
+      throw new Error(
         "iTerm2 is not installed. Skipping iTerm2 preferences setup."
       );
-      return;
     }
 
-    const source = resolve(
-      join(__dirname(import.meta.url), "com.googlecode.iterm2.plist")
-    );
+    const pwd = import.meta.dirname;
+    if (!pwd) {
+      throw new Error(
+        "Could not get current directory. Skipping iTerm2 preferences setup."
+      );
+    }
 
     execute(
       "defaults",
@@ -26,7 +28,7 @@ export default modular({
       "com.googlecode.iterm2.plist",
       "PrefsCustomFolder",
       "-string",
-      source
+      pwd
     );
 
     execute(
