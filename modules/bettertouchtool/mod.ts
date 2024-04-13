@@ -8,6 +8,21 @@ export default modular({
   name: "BetterTouchTool",
 
   install: () => {
+    if (
+      (() => {
+        try {
+          execute("defaults", "read", "com.hegenberg.BetterTouchTool", {
+            silent: true,
+          });
+          return true;
+        } catch (_error) {
+          // When failed, BetterTouchTool has never been run.
+          return false;
+        }
+      })()
+    )
+      return;
+
     const files = ["./Default.bttpreset"];
 
     for (const file of files) {

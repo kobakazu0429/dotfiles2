@@ -1,2 +1,2 @@
 (await import("../modules/brew/mod.ts")).default.update();
-// update("karabiner");
+(await import("../modules/karabiner/mod.ts")).default.update();

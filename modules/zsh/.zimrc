@@ -41,7 +41,7 @@ zmodule $DOTFILES/modules/zsh/eriner
 zmodule zsh-users/zsh-completions --fpath src
 if [[ -d /opt/homebrew/share/zsh/site-functions ]] && [ "$(uname -m)" = "arm64" ]; then
   # arm
-  # zmodule /opt/homebrew/share/zsh/site-functions --fpath .
+  zmodule /opt/homebrew/share/zsh/site-functions --fpath .
 elif [[ -d /usr/local/share/zsh/site-functions ]] && [ "$(uname -m)" = "x86_64" ]; then
   # x86_64
   zmodule /usr/local/share/zsh/site-functions --fpath .
