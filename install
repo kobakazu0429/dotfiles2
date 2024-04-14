@@ -7,7 +7,15 @@ set -eux
 
 bin=`pwd`/install
 
-curl https://dot.kaz.dev/install_x86_64-apple-darwin -o $bin
+if [ "$(uname -m)" = "arm64" ]; then
+  curl https://dot.kaz.dev/install_aarch64-apple-darwin -o $bin
+elif [ "$(uname -m)" = "x86_64" ]; then
+  curl https://dot.kaz.dev/install_x86_64-apple-darwin -o $bin
+else
+  echo "Unsupported architecture"
+  exit 1
+fi
+
 chmod +x $bin
 $bin
 if [ $? = 0]; then
