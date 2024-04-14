@@ -27,11 +27,7 @@ export const minimum = [
   `brew "tree"`, // Display directories as trees (with optional color/HTML output)
   `brew "wget"`, // Internet file retriever
 
-  `cask "1password"`, // Password manager that keeps all passwords secure behind one password
-  `cask "1password-cli"`, // Command-line interface for 1Password
-  `cask "adobe-acrobat-reader"`, // View, print, and comment on PDF documents
   `cask "bettertouchtool"`, // Tool to customise input devices and automate computer systems
-  `cask "db-browser-for-sqlite"`, // Browser for SQLite databases
   `cask "discord"`, // Voice and text chat software
   `cask "google-chrome"`, // Web browser
   `cask "iterm2"`, // Terminal emulator as alternative to Apple's Terminal app
@@ -39,7 +35,6 @@ export const minimum = [
   `cask "raycast"`, // Control your tools with a few keystrokes
   `cask "slack"`, // Team communication and collaboration software
   `cask "visual-studio-code"`, // Open-source code editor
-  `cask "vlc"`, // Multimedia player
 
   // `mas "Hex Fiend", id: 1342896380`,
   `mas "The Unarchiver", id: 425424353`,
@@ -49,23 +44,23 @@ export const minimum = [
 export const personal = [
   ...minimum,
 
-  `mas "Disk Speed Test", id: 425264550`,
-  `mas "LINE", id: 539883307`,
-  // `mas "LINE WORKS", id: 6447544433`,
-  `mas "Tailscale", id: 1475387142`,
-
-  // too old, install by modules
-  // `tap "carlocab/personal"`,
-  // `brew "carlocab/personal/unrar"`, // Extract, view, and test RAR archives,
-
   `brew "aria2"`, // Download with resuming and segmented downloading
   // `brew "ffmpeg"`, // Play, record, convert, and stream audio and video
   // `brew "youtube-dl"`, // Download YouTube videos from the command-line
   `brew "teamookla/speedtest/speedtest"`, // Ookla Speedtest
-
+  `cask "1password"`, // Password manager that keeps all passwords secure behind one password
+  `cask "1password-cli"`, // Command-line interface for 1Password
+  `cask "adobe-acrobat-reader"`, // View, print, and comment on PDF documents
   `cask "appcleaner"`, // Application uninstaller
+  `cask "db-browser-for-sqlite"`, // Browser for SQLite databases
   `cask "rar"`, // Archive manager for data compression and backups
   `cask "tor-browser"`, // Web browser focusing on security
+  `cask "vlc"`, // Multimedia player
+
+  `mas "Disk Speed Test", id: 425264550`,
+  `mas "LINE", id: 539883307`,
+  // `mas "LINE WORKS", id: 6447544433`,
+  `mas "Tailscale", id: 1475387142`,
 
   // Failed to install
   // `cask "logi-options-plus"`
