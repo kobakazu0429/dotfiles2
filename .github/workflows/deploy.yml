@@ -15,7 +15,7 @@ jobs:
       - uses: denoland/setup-deno@v1
       - name: Compile install binary
         run: deno task compile:mac
-      - uses: actions/upload-pages-artifact@v1
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
 
