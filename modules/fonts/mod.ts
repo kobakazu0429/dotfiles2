@@ -10,11 +10,17 @@ import {
   XDG_DATA_HOME,
 } from "./../../utils/path.ts";
 import { log } from "../../utils/logger.ts";
+import { hashCheck } from "../../utils/hash.ts";
 
 const userFontDirectory: Record<OS, string> = {
   intel_mac: resolve(join(homeDir(), "Library", "Fonts")),
   arm_mac: resolve(join(homeDir(), "Library", "Fonts")),
   ubuntu: resolve(join(XDG_DATA_HOME, "fonts")),
+};
+
+const HASH = {
+  "Source Code Pro for Powerline":
+    "f089e2eb25f4c652bd8fe41b3e24170b6dde8a43752749d6d229a6dc1ede408f",
 };
 
 const downloadDirectory = tempDir();
@@ -62,7 +68,7 @@ const RictyDiminished = () => {
 };
 
 // for terminal
-const SourceCodeProForPowerline = () => {
+const SourceCodeProForPowerline = async () => {
   const url =
     "https://github.com/powerline/fonts/raw/master/SourceCodePro/Source Code Pro for Powerline.otf";
   const fontFilename = basename(url);
@@ -81,6 +87,10 @@ const SourceCodeProForPowerline = () => {
     }
 
     execute("wget", url, "-O", downloadPath);
+
+    const hash = Deno.readFileSync(downloadPath);
+    await hashCheck(hash, "SHA-256", HASH["Source Code Pro for Powerline"]);
+
     moveSync(downloadPath, destPath);
   } catch (error) {
     log.warning(error);
@@ -90,9 +100,9 @@ const SourceCodeProForPowerline = () => {
 export default modular({
   name: "fonts",
 
-  install: () => {
+  install: async () => {
     RictyDiminished();
-    SourceCodeProForPowerline();
+    await SourceCodeProForPowerline();
   },
 
   update: async () => {},
