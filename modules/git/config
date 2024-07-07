@@ -1,3 +1,9 @@
+[includeIf "hasconfig:remote.*.url:ssh://git@github.com/**"]
+  path = "~/.git_config_private"
+
+[includeIf "hasconfig:remote.*.url:ssh://git@gitlab*/**"]
+  path = "~/.git_config_pxv"
+
 [push]
   default      = current
 [alias]
@@ -13,16 +19,9 @@
   l            = log -n
   f            = fetch
   showpr = "!f() { git log --merges --oneline --reverse --ancestry-path $1...master | grep 'Merge pull request #' | head -n 1; }; f"
-[user]
-  name = kobakazu0429
-  email = kobakazu10@gmail.com
-  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO+xpuW30JfmKeyzuJh3e/9F9muVLBE6ZhSb4Dr0goNO
 [core]
   pager        = less -cm
   quotepath    = false
-[commit]
-  template = /Users/kazu/.stCommitMsg
-  gpgsign = true
 [fetch]
   prune = true
 [filter "lfs"]
@@ -38,7 +37,3 @@
     log = diff-highlight | less
     show = diff-highlight | less
     diff = diff-highlight | less
-[gpg]
-  format = ssh
-[gpg "ssh"]
-  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"

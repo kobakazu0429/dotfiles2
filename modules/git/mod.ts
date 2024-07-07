@@ -16,11 +16,15 @@ export default modular({
   needs: [(await import("../brew/mod.ts")).default.name],
 
   install: () => {
-    const files = ["config", "ignore"];
-
-    for (const file of files) {
+    for (const file of ["config", "ignore"]) {
       const source = resolve(join(__dirname(import.meta.url), file));
       const to = resolve(join(XDG_CONFIG_HOME, "git", file));
+      symlink(source, to);
+    }
+
+    for (const file of [".git_config_private", ".git_config_pxv"]) {
+      const source = resolve(join(__dirname(import.meta.url), file));
+      const to = resolve(join(homeDir(), file));
       symlink(source, to);
     }
 

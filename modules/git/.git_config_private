@@ -1,0 +1,10 @@
+[user]
+  name = kobakazu0429
+  email = kobakazu10@gmail.com
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO+xpuW30JfmKeyzuJh3e/9F9muVLBE6ZhSb4Dr0goNO
+[commit]
+  gpgsign = true
+[gpg]
+  format = ssh
+[gpg "ssh"]
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
