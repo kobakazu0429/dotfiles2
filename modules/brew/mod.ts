@@ -24,6 +24,8 @@ const getData = (env: Env) => {
 export default modular({
   name: "brew",
 
+  needs: [(await import("../homebrew/mod.ts")).default.name],
+
   install: () => {
     const data = getData(getEnv());
     writeBrewfile(data.join("\n"));
@@ -31,6 +33,7 @@ export default modular({
     execute("brew", "update");
     execute("brew", "upgrade");
     execute("brew", "bundle", "--file", brewfilePath);
+    execute("brew", "cleanup");
   },
 
   update: () => {

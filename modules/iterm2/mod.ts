@@ -8,6 +8,8 @@ import { exists } from "./../../utils/exists.ts";
 export default modular({
   name: "iterm2",
 
+  needs: [(await import("../brew/mod.ts")).default.name],
+
   install: () => {
     if (!exists("/Applications/iTerm.app")) {
       throw new Error(

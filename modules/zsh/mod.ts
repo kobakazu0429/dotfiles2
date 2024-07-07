@@ -8,6 +8,8 @@ import { homeDir } from "../../utils/path.ts";
 export default modular({
   name: "zsh",
 
+  needs: [],
+
   install: () => {
     const files = [
       [".zshrc", resolve(join(XDG_CONFIG_HOME, "zsh"))],

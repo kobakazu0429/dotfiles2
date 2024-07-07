@@ -13,6 +13,8 @@ const diffHighlight: Record<OS, string> = {
 export default modular({
   name: "git",
 
+  needs: [(await import("../brew/mod.ts")).default.name],
+
   install: () => {
     const files = ["config", "ignore"];
 

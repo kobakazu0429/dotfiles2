@@ -6,6 +6,8 @@ import { modular } from "../../utils/modular.ts";
 export default modular({
   name: "clang",
 
+  needs: [],
+
   install: () => {
     const files = [".clang-format"];
 

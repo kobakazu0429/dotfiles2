@@ -6,6 +6,8 @@ import { XDG_CONFIG_HOME, __dirname } from "./../../utils/path.ts";
 export default modular({
   name: "htop",
 
+  needs: [],
+
   install: () => {
     const files = ["htoprc"];
 

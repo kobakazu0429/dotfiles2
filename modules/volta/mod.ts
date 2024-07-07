@@ -5,6 +5,8 @@ import { execute } from "./../../utils/execute.ts";
 export default modular({
   name: "volta",
 
+  needs: [(await import("../brew/mod.ts")).default.name],
+
   install: () => {
     which("volta");
     execute("volta", "install", "node"); // LTS

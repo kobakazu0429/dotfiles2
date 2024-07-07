@@ -79,7 +79,7 @@ const SourceCodeProForPowerline = async () => {
     try {
       const info = Deno.statSync(destPath);
       if (info.isFile) {
-        log.info("SourceCodeProForPowerline is exist.");
+        log.debug("SourceCodeProForPowerline is exist.");
         return;
       }
     } catch (_error) {
@@ -99,6 +99,8 @@ const SourceCodeProForPowerline = async () => {
 
 export default modular({
   name: "fonts",
+
+  needs: [],
 
   install: async () => {
     RictyDiminished();

@@ -65,3 +65,5 @@ zmodule zsh-users/zsh-history-substring-search
 
 # fishのようなオートサジェスト
 zmodule zsh-users/zsh-autosuggestions
+
+zmodule azu/ni.zsh --source ni.zsh

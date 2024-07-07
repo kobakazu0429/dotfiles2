@@ -5,6 +5,8 @@ import { which } from "./../../utils/which.ts";
 export default modular({
   name: "homebrew",
 
+  needs: [],
+
   install: () => {
     if (which("brew")) return;
 
