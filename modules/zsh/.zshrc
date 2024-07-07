@@ -278,6 +278,8 @@ function youtubemp3 () {
 function show-npm-scripts() {
   if [ -e "package.json" ]; then
     cat package.json | jq -r ".scripts | to_entries[] | \"\(.key)\t\(.value)\"" | column -t -s "`printf '\t'`"
+  elif [ -e "pnpm-lock.yaml" ]; then
+    cat package.json | jq -r ".scripts | to_entries[] | \"\(.key)\t\(.value)\"" | column -t -s "`printf '\t'`"
   elif [ -e "deno.json" ]; then
     cat deno.json | jq -r ".scripts | to_entries[] | \"\(.key)\t\(.value)\"" | column -t -s "`printf '\t'`"
   elif [ -e "deno.jsonc" ]; then
@@ -292,6 +294,8 @@ function y() {
       npm run $scripts
     elif [ -e "package.json" ] && [ -e "yarn.lock" ]; then
       yarn run $scripts
+    elif [ -e "package.json" ] && [ -e "pnpm-lock.yaml" ]; then
+      pnpm run $scripts
     elif [ -e "deno.json" ] || [ -e "deno.jsonc" ]; then
       deno task $scripts
     fi
