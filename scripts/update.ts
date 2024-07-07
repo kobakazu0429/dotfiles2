@@ -1,2 +1,11 @@
-(await import("../modules/brew/mod.ts")).default.update();
-(await import("../modules/karabiner/mod.ts")).default.update();
+import { sortedModules } from "./_modules.ts";
+import { detectOS } from "./../utils/os.ts";
+
+const os = detectOS();
+if (os === "ubuntu") {
+  throw new Error("ubuntu is not supported perfectly :C");
+}
+
+for await (const module of sortedModules) {
+  await module.update();
+}
