@@ -211,7 +211,7 @@ alias gch="git checkout"
 
 function asd() {
   local root=$(ghq root)
-  local repo=$(find $root -mindepth 3 -maxdepth 3 | sort | grep -v DS_Store | sed -e "s#$root/##g" | peco)
+  local repo=$(ghq list | peco)
   if [ -n "$repo" ]; then
     cd "$root/$repo"
   fi
