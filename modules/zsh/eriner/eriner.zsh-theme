@@ -48,7 +48,11 @@ _prompt_eriner_status() {
   if (( $(jobs -l | wc -l) )) segment+=' %F{cyan}⚙'
   if (( RANGER_LEVEL )) segment+=' %F{cyan}r'
   if [[ -n ${VIRTUAL_ENV} ]] segment+=" %F{cyan}${VIRTUAL_ENV:t}"
-  segment+=" %F{%(!.yellow.default)}%n@%m"
+  if [[ $HOST == "kobakazu0429noMacBook-Pro.local" && $USER == "kobakazu0429" ]]; then
+    segment+=" %F{%(!.yellow.default)}%n@pxv_mbp"
+  else
+    segment+=" %F{%(!.yellow.default)}%n@%m"
+  fi
   if [[ -n ${segment} ]]; then
     _prompt_eriner_segment ${STATUS_COLOR} "${segment} "
   fi
