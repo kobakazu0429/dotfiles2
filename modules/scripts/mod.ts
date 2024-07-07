@@ -10,6 +10,7 @@ const cmds: [source: string, alias: string][] = [
   ["lsrar.js", "lsrar"],
   ["rename.mjs", "rename"],
   ["crop.mjs", "mcrop"],
+  ["trim.ts", "trim"],
 ];
 
 export default modular({
