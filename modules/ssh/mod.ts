@@ -24,6 +24,8 @@ const checkSSHConnection = () => {
 export default modular({
   name: "ssh",
 
+  needs: [(await import("../brew/mod.ts")).default.name],
+
   install: () => {
     if (checkSSHConnection()) {
       return;

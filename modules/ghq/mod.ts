@@ -8,6 +8,8 @@ import { detectOS } from "./../../utils/os.ts";
 export default modular({
   name: "ghq",
 
+  needs: [(await import("../brew/mod.ts")).default.name],
+
   install: () => {
     if (which("ghq")) return;
 

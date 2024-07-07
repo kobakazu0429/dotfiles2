@@ -6,6 +6,8 @@ import { homeDir, __dirname } from "./../../utils/path.ts";
 export default modular({
   name: "csscomb",
 
+  needs: [],
+
   install: () => {
     const files = [".csscomb.json"];
 

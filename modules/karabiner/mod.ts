@@ -7,6 +7,8 @@ import { log } from "../../utils/logger.ts";
 export default modular({
   name: "karabiner",
 
+  needs: [],
+
   install: () => {
     const files = [
       "karabiner.json",

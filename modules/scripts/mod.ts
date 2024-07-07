@@ -15,6 +15,8 @@ const cmds: [source: string, alias: string][] = [
 export default modular({
   name: "scripts",
 
+  needs: [(await import("../volta/mod.ts")).default.name],
+
   install: () => {
     which("pnpm");
 

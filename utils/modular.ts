@@ -1,21 +1,22 @@
 import { log } from "./logger.ts";
 
-export type Fns = "install" | "update" | "uninstall";
+export type Commands = "install" | "update" | "uninstall";
 
 export type Module = {
   name: string;
-} & { [Fn in Fns]: () => void };
+  needs: string[];
+} & { [Command in Commands]: () => void | Promise<void> };
 
 export type Options<Target extends Module> = {
   interceptors: {
-    before: (prop: Fns, target: Target) => void;
-    after: (prop: Fns, target: Target) => void;
+    before: (command: Commands, target: Target) => void;
+    after: (command: Commands, target: Target) => void;
   };
-  onFailed: (error: Error, prop: Fns, target: Target) => void;
+  onFailed: (error: Error, command: Commands, target: Target) => void;
 };
 
 const messageMapper: Record<
-  Fns,
+  Commands,
   Record<
     | keyof Omit<Options<Module>, "interceptors">
     | keyof Options<Module>["interceptors"],
@@ -41,56 +42,40 @@ const messageMapper: Record<
 
 const defaultOptions: Options<Module> = {
   interceptors: {
-    before: (prop, target) => {
-      log.info(`${messageMapper[prop]["before"]} ${target.name}.`);
+    before: (command, target) => {
+      log.info(`${messageMapper[command]["before"]} ${target.name} ...`);
     },
-    after: (prop, target) => {
-      log.info(`${messageMapper[prop]["after"]} ${target.name}.`);
+    after: (command, target) => {
+      log.info(`${messageMapper[command]["after"]} ${target.name} !`);
+      console.log(); // spacing
     },
   },
-  onFailed: (error, prop, target) => {
-    log.error(`Failed to ${messageMapper[prop]["onFailed"]} ${target.name}.`);
+  onFailed: (error, command, target) => {
+    log.error(
+      `Failed to ${messageMapper[command]["onFailed"]} ${target.name} :(`
+    );
     log.error(error);
   },
 };
 
-const isFns = (prop: unknown): prop is Fns => {
-  if (typeof prop !== "string")
-    throw new Error(`\`prop\` is ${typeof prop}, expected string. (${prop})`);
-
-  if (!["install", "update", "uninstall"].includes(prop))
-    throw new Error(
-      `\`prop\` is ${prop}, expected install, update or uninstall.`
-    );
-
-  return true;
-};
-
 export const modular = <MyModule extends Module>(
-  module: MyModule,
-  options: Options<MyModule> = {} as Options<MyModule>
-) => {
-  options = { ...defaultOptions, ...options };
+  module: MyModule
+): MyModule => {
+  const fn = async (command: Commands) => {
+    defaultOptions.interceptors.before(command, module);
+    try {
+      await module[command]();
+    } catch (error) {
+      defaultOptions.onFailed(error, command, module);
+    }
+    defaultOptions.interceptors.after(command, module);
+  };
 
-  const proxy = new Proxy(module, {
-    get(target, prop) {
-      if (isFns(prop)) {
-        const property = target[prop];
-        if (typeof property === "function") {
-          return () => {
-            options.interceptors.before(prop, target);
-            try {
-              property();
-            } catch (error) {
-              options.onFailed(error, prop, target);
-            }
-            options.interceptors.after(prop, target);
-          };
-        }
-        return property;
-      }
-    },
-  });
-
-  return proxy;
+  return {
+    name: module.name,
+    needs: module.needs,
+    install: () => fn("install"),
+    uninstall: () => fn("uninstall"),
+    update: () => fn("update"),
+  } as MyModule;
 };
