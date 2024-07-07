@@ -60,7 +60,7 @@ add_to_path $HOME/bin
 # goenv
 export GOENV_ROOT=$HOME/.goenv
 if [ -d $GOENV_ROOT ]; then
-  add_to_path $GOENV_ROOT/bin
+  add_to_path $GOENV_ROOT/shims
   eval "$(goenv init -)"
 fi
 
