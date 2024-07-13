@@ -11,6 +11,7 @@ const cmds: [source: string, alias: string][] = [
   ["rename.mjs", "rename"],
   ["crop.mjs", "mcrop"],
   ["trim.ts", "trim"],
+  ["tree-packages.ts", "tree-packages"],
 ];
 
 export default modular({
