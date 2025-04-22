@@ -18,7 +18,11 @@
   pl           = pull
   l            = log -n
   f            = fetch
+
   showpr = "!f() { git log --merges --oneline --reverse --ancestry-path $1...master | grep 'Merge pull request #' | head -n 1; }; f"
+  currentbranch   = "!f() { git branch --show-current; }; f"
+  topiccommit     = "!f() { git merge-base master $(git currentbranch); }; f"
+  difftopiccommit = "!f() { git diff $(git topiccommit) $@; }; f"
 [core]
   pager        = less -cm
   quotepath    = false

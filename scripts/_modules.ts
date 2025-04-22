@@ -19,6 +19,7 @@ const modules = [
   (await import("../modules/volta/mod.ts")).default,
   (await import("../modules/scripts/mod.ts")).default,
   (await import("../modules/bettertouchtool/mod.ts")).default,
+  (await import("../modules/docker/mod.ts")).default,
   env === "personal" && (await import("../modules/smb/mod.ts")).default,
 ].filter((m) => m !== false) as Module[];
 

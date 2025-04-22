@@ -41,3 +41,10 @@ export const XDG_CACHE_HOME =
   Deno.env.get("XDG_CACHE_HOME") ?? resolve(join(homeDir(), ".cache"));
 export const XDG_DATA_HOME =
   Deno.env.get("XDG_DATA_HOME") ?? resolve(join(homeDir(), ".local", "share"));
+
+export const FPATH =
+  detectOS() === "arm_mac"
+    ? "/opt/homebrew/share/zsh/site-functions"
+    : detectOS() === "intel_mac"
+    ? "/usr/local/share/zsh/site-functions"
+    : null;

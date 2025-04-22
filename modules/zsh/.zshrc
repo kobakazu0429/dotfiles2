@@ -42,6 +42,12 @@ add_to_path $HOME/bin
 
 # # export PATH="/usr/local/opt/llvm/bin:$PATH"
 
+# mise
+if type mise &>/dev/null; then
+  eval "$(mise activate zsh)"
+  eval "$(mise activate --shims)"
+fi
+
 # rbenv
 # export RBENV_ROOT=$HOME/.rbenv
 # export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
@@ -202,6 +208,7 @@ alias ga="git add"
 alias gb="git branch -a"
 alias gc="git commit -m"
 alias gd="git diff"
+alias gdt="git difftopiccommit"
 alias gf="git fetch"
 alias gp="git push"
 alias gpl="git pull"
@@ -327,6 +334,8 @@ function m() {
     make "$t"
   fi
 }
+
+alias nodets="node --experimental-strip-types --experimental-transform-types --experimental-detect-module --no-warnings=ExperimentalWarning"
 
 
 # perf

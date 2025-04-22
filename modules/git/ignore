@@ -25,3 +25,7 @@ Thumbs.db
 # Node.js
 #------
 node_modules/
+
+.kobakazu0429
+
+mise.local.toml
