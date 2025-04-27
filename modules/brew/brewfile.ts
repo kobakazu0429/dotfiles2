@@ -18,13 +18,14 @@ export const minimum = [
   `brew "iperf3"`, // Update of iperf: measures TCP, UDP, and SCTP bandwidth
   `brew "jq"`, // Lightweight and flexible command-line JSON processor
   `brew "mas"`, // Mac App Store command-line interface
+  `brew "mise"`, // Polyglot runtime manager (asdf rust clone)
   `brew "nkf"`, // Network Kanji code conversion Filter (NKF)
   `brew "nmap"`, // Port scanning utility for large networks
-  // `brew "nodebrew"`, // Node.js version manager
-  `brew "volta"`, // JavaScript toolchain manager for reproducible environments
+  `brew "pipx"`, // Execute binaries from Python packages in isolated environments
   `brew "peco"`, // Simplistic interactive filtering tool
   `brew "rsync"`, // Utility that provides fast incremental file transfer
   `brew "tree"`, // Display directories as trees (with optional color/HTML output)
+  `brew "uv"`, // Extremely fast Python package installer and resolver, written in Rust
   `brew "wget"`, // Internet file retriever
 
   `cask "bettertouchtool"`, // Tool to customise input devices and automate computer systems
@@ -46,6 +47,7 @@ export const personal = [
 
   `brew "aria2"`, // Download with resuming and segmented downloading
   // `brew "ffmpeg"`, // Play, record, convert, and stream audio and video
+  // `brew "yt-dlp"`, // Feature-rich command-line audio/video downloader
   // `brew "youtube-dl"`, // Download YouTube videos from the command-line
   `brew "teamookla/speedtest/speedtest"`, // Ookla Speedtest
   `cask "1password"`, // Password manager that keeps all passwords secure behind one password
