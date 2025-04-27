@@ -337,6 +337,16 @@ function m() {
 
 alias nodets="node --experimental-strip-types --experimental-transform-types --experimental-detect-module --no-warnings=ExperimentalWarning"
 
+function c() {
+  local root_repo=$((git rev-parse --show-superproject-working-tree --show-toplevel 2> /dev/null || echo ".") | head -1)
+  local workspace_files=("$root_repo"/*.code-workspace(N))
+
+  if (( ${#workspace_files[@]} > 0 )); then
+    code "${workspace_files[1]}"
+  else
+    code "$root_repo"
+  fi
+}
 
 # perf
 if (which zprof > /dev/null 2>&1) ;then
