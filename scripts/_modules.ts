@@ -16,7 +16,7 @@ const modules = [
   (await import("../modules/clang/mod.ts")).default,
   (await import("../modules/csscomb/mod.ts")).default,
   (await import("../modules/karabiner/mod.ts")).default,
-  (await import("../modules/volta/mod.ts")).default,
+  (await import("../modules/mise/mod.ts")).default,
   (await import("../modules/scripts/mod.ts")).default,
   (await import("../modules/bettertouchtool/mod.ts")).default,
   (await import("../modules/docker/mod.ts")).default,

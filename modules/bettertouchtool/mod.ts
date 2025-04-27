@@ -7,7 +7,7 @@ import { log } from "../../utils/logger.ts";
 export default modular({
   name: "BetterTouchTool",
 
-  needs: [(await import("../volta/mod.ts")).default.name],
+  needs: [(await import("../mise/mod.ts")).default.name],
 
   install: () => {
     if (

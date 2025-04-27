@@ -31,8 +31,6 @@ add_to_path /usr/local/opt/openjdk/bin
 add_to_path /usr/local/opt/openssl/bin
 add_to_path /usr/local/opt/binutils/bin
 add_to_path /usr/local/opt/imagemagick@7/bin
-# add_to_path $HOME/.nodebrew/current/bin
-# add_to_path $HOME/.yarn/bin
 export PNPM_HOME=$HOME/.local/share/pnpm
 add_to_path $PNPM_HOME
 add_to_path $HOME/.local/bin
@@ -63,11 +61,11 @@ fi
 # fi
 
 # goenv
-export GOENV_ROOT=$HOME/.goenv
-if [ -d $GOENV_ROOT ]; then
-  add_to_path $GOENV_ROOT/shims
-  eval "$(goenv init -)"
-fi
+# export GOENV_ROOT=$HOME/.goenv
+# if [ -d $GOENV_ROOT ]; then
+#   add_to_path $GOENV_ROOT/shims
+#   eval "$(goenv init -)"
+# fi
 
 
 export PATH
