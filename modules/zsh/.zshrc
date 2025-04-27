@@ -280,6 +280,10 @@ function youtubemp3 () {
   youtube-dl $1 -x -f "bestaudio" --audio-format mp3 --audio-quality 0
 }
 
+function ytdlp-mp4 () {
+  yt-dlp -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' "$1"
+}
+
 
 # JS
 function show-npm-scripts() {
@@ -312,7 +316,7 @@ function y() {
 
 # rar
 function rarr() {
-  rar a "$1.rar" "$1" -x"**/.*" -qo+
+  rar a "$1.rar" "$1" -x"**/.*"
 }
 
 
@@ -352,3 +356,5 @@ function c() {
 if (which zprof > /dev/null 2>&1) ;then
   zprof
 fi
+
+alias nodets="node --experimental-strip-types --experimental-transform-types --experimental-detect-module --no-warnings=ExperimentalWarning"
