@@ -10,4 +10,11 @@ export ZDOTDIR=$XDG_CONFIG_HOME/zsh
 export ZIM_HOME=$XDG_CONFIG_HOME/zim
 export ZIM_CONFIG_FILE=$ZIM_HOME/.zimrc
 
+if [[ -d "$DOTFILES/modules/zsh/zshenv.d" ]]; then
+  for conf in "$DOTFILES/modules/zsh/zshenv.d/".zshenv_*; do
+    [ -e "$conf" ] || break
+    source "${conf}"
+  done
+fi
+
 # zmodload zsh/zprof && zprof
