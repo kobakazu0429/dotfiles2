@@ -6,6 +6,8 @@ import { homeDir, __dirname } from "./../../utils/path.ts";
 export default modular({
   name: "template",
 
+  needs: [],
+
   install: () => {
     const files = [""];
 
