@@ -30,7 +30,7 @@ async function main() {
   if (ok1 !== "y") process.exit(0);
 
   for (const dir of dirs) {
-    await $`rar a ${dir}.rar ${dir} -x"**/.*" -qo+`;
+    await $`rar a ${dir}.rar ${dir} -x"**/.*"`;
   }
 
   console.log(chalk.bgBlueBright("[cleanup start]"));
