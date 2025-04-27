@@ -34,7 +34,6 @@ add_to_path /usr/local/opt/imagemagick@7/bin
 # add_to_path $HOME/.nodebrew/current/bin
 # add_to_path $HOME/.yarn/bin
 export PNPM_HOME=$HOME/.local/share/pnpm
-add_to_path $HOME/.volta/bin
 add_to_path $PNPM_HOME
 add_to_path $HOME/.local/bin
 add_to_path $HOME/bin
@@ -356,5 +355,3 @@ function c() {
 if (which zprof > /dev/null 2>&1) ;then
   zprof
 fi
-
-alias nodets="node --experimental-strip-types --experimental-transform-types --experimental-detect-module --no-warnings=ExperimentalWarning"
