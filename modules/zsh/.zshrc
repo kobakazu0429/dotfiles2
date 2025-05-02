@@ -342,7 +342,7 @@ function c() {
   local root_repo=$((git rev-parse --show-superproject-working-tree --show-toplevel 2> /dev/null || echo ".") | head -1)
   local workspace_files=("$root_repo"/*.code-workspace(N))
 
-  if (( ${#workspace_files[@]} > 0 )); then
+  if [[ ${#workspace_files[@]} > 0 ]]; then
     code "${workspace_files[1]}"
   else
     code "$root_repo"
