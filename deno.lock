@@ -1,39 +1,35 @@
 {
-  "version": "3",
-  "packages": {
-    "specifiers": {
-      "jsr:@std/fs": "jsr:@std/fs@0.229.3",
-      "jsr:@std/path": "jsr:@std/path@1.0.0",
-      "jsr:@std/path@1.0.0-rc.1": "jsr:@std/path@1.0.0-rc.1",
-      "npm:@types/node": "npm:@types/node@18.16.19",
-      "npm:ts-dedent@2.2.0": "npm:ts-dedent@2.2.0"
+  "version": "5",
+  "specifiers": {
+    "jsr:@std/fs@*": "0.229.3",
+    "jsr:@std/path@*": "1.0.0",
+    "jsr:@std/path@1.0.0-rc.1": "1.0.0-rc.1",
+    "npm:@types/node@*": "18.16.19",
+    "npm:ts-dedent@2.3.0": "2.3.0"
+  },
+  "jsr": {
+    "@std/fs@0.229.3": {
+      "integrity": "783bca21f24da92e04c3893c9e79653227ab016c48e96b3078377ebd5222e6eb",
+      "dependencies": [
+        "jsr:@std/path@1.0.0-rc.1"
+      ]
     },
-    "jsr": {
-      "@std/fs@0.229.3": {
-        "integrity": "783bca21f24da92e04c3893c9e79653227ab016c48e96b3078377ebd5222e6eb",
-        "dependencies": [
-          "jsr:@std/path@1.0.0-rc.1"
-        ]
-      },
-      "@std/path@0.225.2": {
-        "integrity": "0f2db41d36b50ef048dcb0399aac720a5348638dd3cb5bf80685bf2a745aa506"
-      },
-      "@std/path@1.0.0": {
-        "integrity": "77fcb858b6e38777d1154df0f02245ba0b07e2c40ca3c0eec57c9233188c2d21"
-      },
-      "@std/path@1.0.0-rc.1": {
-        "integrity": "b8c00ae2f19106a6bb7cbf1ab9be52aa70de1605daeb2dbdc4f87a7cbaf10ff6"
-      }
+    "@std/path@0.225.2": {
+      "integrity": "0f2db41d36b50ef048dcb0399aac720a5348638dd3cb5bf80685bf2a745aa506"
     },
-    "npm": {
-      "@types/node@18.16.19": {
-        "integrity": "sha512-IXl7o+R9iti9eBW4Wg2hx1xQDig183jj7YLn8F7udNceyfkbn1ZxmzZXuak20gR40D7pIkIY1kYGx5VIGbaHKA==",
-        "dependencies": {}
-      },
-      "ts-dedent@2.2.0": {
-        "integrity": "sha512-q5W7tVM71e2xjHZTlgfTDoPF/SmqKG5hddq9SzR49CH2hayqRKJtQ4mtRlSxKaJlR/+9rEM+mnBHf7I2/BQcpQ==",
-        "dependencies": {}
-      }
+    "@std/path@1.0.0-rc.1": {
+      "integrity": "b8c00ae2f19106a6bb7cbf1ab9be52aa70de1605daeb2dbdc4f87a7cbaf10ff6"
+    },
+    "@std/path@1.0.0": {
+      "integrity": "77fcb858b6e38777d1154df0f02245ba0b07e2c40ca3c0eec57c9233188c2d21"
+    }
+  },
+  "npm": {
+    "@types/node@18.16.19": {
+      "integrity": "sha512-IXl7o+R9iti9eBW4Wg2hx1xQDig183jj7YLn8F7udNceyfkbn1ZxmzZXuak20gR40D7pIkIY1kYGx5VIGbaHKA=="
+    },
+    "ts-dedent@2.3.0": {
+      "integrity": "sha512-JfJeIHke7y2egdGGgRAvpCwYFUsHlM2gPcrVOxFkznt/4uzQ7HFmvE63iFHVLBJNDuyDOQgijDK/tXH/f6Msjg=="
     }
   },
   "redirects": {
@@ -222,7 +218,7 @@
   },
   "workspace": {
     "dependencies": [
-      "npm:ts-dedent@2.2.0"
+      "npm:ts-dedent@2.3.0"
     ]
   }
 }

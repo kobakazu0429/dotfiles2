@@ -20,6 +20,6 @@
     "fs": "https://deno.land/std@0.222.1/fs/mod.ts",
     "log": "https://deno.land/std@0.191.0/log/mod.ts",
     "path": "https://deno.land/std@0.191.0/path/mod.ts",
-    "ts-dedent": "npm:ts-dedent@2.2.0"
+    "ts-dedent": "npm:ts-dedent@2.3.0"
   }
 }
